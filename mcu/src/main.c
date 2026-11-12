@@ -10,6 +10,7 @@ int main(void) {
     configureClock();
 
     gpioEnable(GPIO_PORT_A); // enabling PA pins
+    gpioEnable(GPIO_PORT_B); // enabling PB pins
 
     // Button input initialization (for accelerometer sampling enable)
     pinMode(BUTTON_PIN, GPIO_INPUT);
