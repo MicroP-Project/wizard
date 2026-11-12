@@ -7,6 +7,7 @@
 #include "main.h"
 
 int main(void) {
+    configureFlash();
     configureClock();
 
     gpioEnable(GPIO_PORT_A); // enabling PA pins
