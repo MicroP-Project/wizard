@@ -31,17 +31,42 @@ int main(void) {
             int16_t x_only = accel_mg.x;
             int16_t y_only = accel_mg.y;
             int16_t z_only = accel_mg.z;
-            /*
+            // 1 -> +x
+            // 2 -> -x
+            // 3 -> +y
+            // 4 -> -y
+            // 5 -> +z
+            // 6 -> -z
             if (x_only > THRESH_X_Y){
-                user_input = 01; // x direction
+                user_input = 1; // x direction
                 break;
                 }
-            else if (x_only > THRESH_X_Y)
-            // read x
-            // read y
-            // read z
-            */
-            en = digitalRead(BUTTON_PIN);
+            else if (x_only < -THRESH_X_Y){
+                user_input = 2;
+                break;
+            }
+            else if (y_only > THRESH_X_Y){
+                user_input = 3;
+                break;
+            }
+            else if (y_only < -THRESH_X_Y){
+                user_input = 4;
+                break;
+            }
+            else if (z_only > THRESH_Z_UP){
+                user_input = 5;
+                break;
+            }
+            else if (z_only < -THRESH_Z_DOWN){
+                user_input = 6;
+                break;
+            }else{
+                user_input = 0;
+            }
+            // wait for button to be released 
+            while(en){
+                en = digitalRead(BUTTON_PIN);
+            }
         }
 
     }

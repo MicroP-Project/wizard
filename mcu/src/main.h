@@ -13,8 +13,9 @@
 #include "STM32L432KC_FLASH.h"
 
 #define BUTTON_PIN PA6 // LED pin for blinking (D4, green LED on development pcb)
-#define THRESH_X_Y 100
-#define THRESH_Z 1000
+#define THRESH_X_Y 0x300
+#define THRESH_Z_UP 0x600
+#define THRESH_Z_DOWN 0x0
 
 
 #endif // MAIN_H
