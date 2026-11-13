@@ -30,16 +30,35 @@ int main(void) {
     /*Enables GPIOB, initializes SPI1 in Mode 3 at 2.5 MHz, verifies the sensor responds with 0x33 on WHO_AM_I, and configures the LIS3DH for 100 Hz output, X/Y/Z enabled, 12-bit high-resolution mode, $\pm 2g$ range, and Block Data Update (returns 1 on success, 0 on failure). */
     
     volatile int en;
+    volatile int debounce_en;
+
     int user_input;
     while (1){
-        en = digitalRead(BUTTON_PIN);
-        while (en){
 
+        debounce_en = 0;
+        if (digitalRead(BUTTON_PIN)){
+            for (int i = 0; i < 10000; i++) {
+                en = digitalRead(BUTTON_PIN);
+                if (!en){
+                    debounce_en = 0;
+                    break;
+                }
+                else if (i == 9999){
+                    debounce_en = 1;
+                }
+            }
+        }
+
+        while (debounce_en){
             accel_t accel_mg;
             accelReadMg(&accel_mg);
             int16_t x_only = accel_mg.x;
             int16_t y_only = accel_mg.y;
             int16_t z_only = accel_mg.z;
+
+
+            // test for x values: printf("x: %d \n", x_only);
+
             // 1 -> +x
             // 2 -> -x
             // 3 -> +y
@@ -79,10 +98,12 @@ int main(void) {
         if (en){
             printf("user_input: %d \n", user_input);
         }
+
         // wait for button to be released
         while(en){
             en = digitalRead(BUTTON_PIN);
         }
+
 
     }
 }
