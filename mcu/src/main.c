@@ -6,6 +6,15 @@
 #include <stdio.h>
 #include "main.h"
 
+// Redirect printf to the debugger's SWO/ITM console (same as lab 5)
+int _write(int file, char *ptr, int len) {
+  int i = 0;
+  for (i = 0; i < len; i++) {
+    ITM_SendChar((*ptr++));
+  }
+  return len;
+}
+
 int main(void) {
     configureFlash();
     configureClock();
@@ -63,10 +72,16 @@ int main(void) {
             }else{
                 user_input = 0;
             }
-            // wait for button to be released 
-            while(en){
-                en = digitalRead(BUTTON_PIN);
-            }
+            
+        }
+        // print user_input onto screen
+        // (only if the button was pressed; otherwise this would print on every loop)
+        if (en){
+            printf("user_input: %d \n", user_input);
+        }
+        // wait for button to be released
+        while(en){
+            en = digitalRead(BUTTON_PIN);
         }
 
     }
