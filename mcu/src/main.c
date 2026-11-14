@@ -34,7 +34,7 @@ int main(void) {
 
     int user_input;
     while (1){
-
+        // generating next move
         debounce_en = 0;
         if (digitalRead(BUTTON_PIN)){
             for (int i = 0; i < 10000; i++) {
@@ -67,37 +67,40 @@ int main(void) {
             // 6 -> -z
             if (x_only > THRESH_X_Y){
                 user_input = 1; // x direction
+                printf("user_input: %d \n", user_input);
+                // SPI write to the FPGA with the specific value
                 break;
                 }
             else if (x_only < -THRESH_X_Y){
                 user_input = 2;
+                printf("user_input: %d \n", user_input);
                 break;
             }
             else if (y_only > THRESH_X_Y){
                 user_input = 3;
+                printf("user_input: %d \n", user_input);
                 break;
             }
             else if (y_only < -THRESH_X_Y){
                 user_input = 4;
+                printf("user_input: %d \n", user_input);
                 break;
             }
             else if (z_only > THRESH_Z_UP){
                 user_input = 5;
+                printf("user_input: %d \n", user_input);
                 break;
             }
             else if (z_only < -THRESH_Z_DOWN){
                 user_input = 6;
+                printf("user_input: %d \n", user_input);
                 break;
             }else{
                 user_input = 0;
             }
             
         }
-        // print user_input onto screen
-        // (only if the button was pressed; otherwise this would print on every loop)
-        if (en){
-            printf("user_input: %d \n", user_input);
-        }
+      
 
         // wait for button to be released
         while(en){
