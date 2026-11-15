@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Sun Nov 15 15:20:31 2026
+Mapped on: Sun Nov 15 15:31:23 2026
 
 Design Information
 ------------------
@@ -22,11 +22,12 @@ Command line:   map -pdc C:/Users/jesli/Documents/GitHub/wizard/fpga/display_rad
 Design Summary
 --------------
 
-   Number of slice registers:  29 out of  5280 (1%)
+   Number of slice registers:  43 out of  5280 (1%)
    Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:            71 out of  5280 (1%)
-      Number of logic LUT4s:              45
-      Number of ripple logic:             13 (26 LUT4s)
+   Number of LUT4s:           101 out of  5280 (2%)
+      Number of logic LUT4s:              62
+      Number of inserted feedthru LUT4s:   1
+      Number of ripple logic:             19 (38 LUT4s)
    Number of IO sites used:   15 out of 39 (38%)
       Number of IO sites used for general PIO: 15
       Number of IO sites used for I3C: 0 out of 2 (0%)
@@ -50,16 +51,15 @@ Design Summary
    Number of PLLs:             0 out of 1 (0%)
    Number of Clocks:  2
       Net int_osc: 13 loads, 13 rising, 0 falling (Driver: Pin u_hfosc/CLKHF)
-      Net clk_shift: 9 loads, 0 rising, 9 falling (Driver: Pin
+      Net clk_shift: 23 loads, 0 rising, 23 falling (Driver: Pin
      u_clk_div.clk_out/Q)
-   Number of Clock Enables:  2
+   Number of Clock Enables:  3
       Net VCC_net: 1 loads, 0 SLICEs
-      Net n359: 9 loads, 9 SLICEs
+      Net n516: 9 loads, 9 SLICEs
+      Net u_display_s1.n37_adj_89: 1 loads, 1 SLICEs
    Number of LSRs:  3
-      Net n344: 9 loads, 9 SLICEs
-      Net cnt_0__N_45: 10 loads, 10 SLICEs
-      Net u_clk_div.n177: 3 loads, 3 SLICEs
-   Top 10 highest fanout non-clock nets:
+      Net cnt_0__N_75: 24 loads, 24 SLICEs
+      Net n501: 9 loads, 9 SLICEs
 
                                     Page 1
 
@@ -69,16 +69,18 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
-      Net u_display_s1.phase[1]: 14 loads
-      Net cnt_0__N_45: 12 loads
-      Net n344: 9 loads
-      Net n359: 9 loads
-      Net u_display_s1.cnt[2]: 9 loads
-      Net u_display_s1.cnt[3]: 9 loads
-      Net u_display_s1.n13: 9 loads
-      Net u_display_s1.n13_adj_63: 8 loads
-      Net u_display_s1.cnt[0]: 7 loads
-      Net u_display_s1.cnt[1]: 7 loads
+      Net u_clk_div.n321: 3 loads, 3 SLICEs
+   Top 10 highest fanout non-clock nets:
+      Net cnt_0__N_75: 26 loads
+      Net u_display_s1.n37: 21 loads
+      Net u_display_s1.R1_c_N_77[3]: 21 loads
+      Net u_display_s1.n354: 19 loads
+      Net n501: 9 loads
+      Net n516: 9 loads
+      Net u_display_s1.R1_c_N_77[0]: 7 loads
+      Net u_display_s1.cnt[2]: 6 loads
+      Net u_display_s1.cnt[3]: 6 loads
+      Net u_display_s1.R1_c_N_77[1]: 6 loads
 
 
 
@@ -100,33 +102,31 @@ IO (PIO) Attributes
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
 |                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| nrst_in             | INPUT     |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| R1                  | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| G1                  | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| B1                  | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| R2                  | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| G2                  | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| B2                  | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| A                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| B                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| C                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| D                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| E                   | OUTPUT    |           |       |       |           |
+| LAT                 | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | CLK                 | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| LAT                 | OUTPUT    |           |       |       |           |
+| OE                  | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| E                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| D                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| C                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| B                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| A                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| B2                  | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| G2                  | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| R2                  | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| B1                  | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| G1                  | OUTPUT    |           |       |       |           |
 
                                     Page 2
 
@@ -137,7 +137,9 @@ IO (PIO) Attributes
 IO (PIO) Attributes (cont)
 --------------------------
 +---------------------+-----------+-----------+-------+-------+-----------+
-| OE                  | OUTPUT    |           |       |       |           |
+| R1                  | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| nrst_in             | INPUT     |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 
 Removed logic
@@ -173,9 +175,7 @@ Run Time and Memory Usage
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
    Peak Memory Usage: 66 MB
-Checksum -- map: e47f1a39e05ce62fa2728e36a905ee2b2db8b0a2
-
-
+Checksum -- map: 9ca9e04aadaf17a5ee73b48c7ad0f9b63b6df7b0
 
 
 

@@ -3,29 +3,29 @@ Report for cell display_top
    Instance path: display_top
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         71        100.0
-                               LUTGATE	         45        100.0
-                                LUTCCU	         26        100.0
+                                  LUT4	        101        100.0
+                               LUTGATE	         63        100.0
+                                LUTCCU	         38        100.0
                                  IOBUF	         15        100.0
-                                PFUREG	         29        100.0
+                                PFUREG	         43        100.0
 SUB MODULES
                                   cell	      count    LUT4 Usage(%)
-                               clk_div	          1         7.0
-                            display_s1	          1        54.9
+                               clk_div	          1         5.0
+                            display_s1	          1        67.3
 ---------------------------------------------------
 Report for cell display_s1
    Instance path: display_top/u_display_s1
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         39        54.9
-                               LUTGATE	         31        68.9
-                                LUTCCU	          8        30.8
-                                PFUREG	          9        31.0
+                                  LUT4	         68        67.3
+                               LUTGATE	         48        76.2
+                                LUTCCU	         20        52.6
+                                PFUREG	         23        53.5
 ---------------------------------------------------
 Report for cell clk_div
    Instance path: display_top/u_clk_div
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	          5         7.0
-                               LUTGATE	          5        11.1
-                                PFUREG	          4        13.8
+                                  LUT4	          5         5.0
+                               LUTGATE	          5         7.9
+                                PFUREG	          4         9.3
