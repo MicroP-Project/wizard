@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Sun Nov 15 15:31:23 2026
+Mapped on: Sun Nov 15 15:38:46 2026
 
 Design Information
 ------------------
@@ -22,12 +22,11 @@ Command line:   map -pdc C:/Users/jesli/Documents/GitHub/wizard/fpga/display_rad
 Design Summary
 --------------
 
-   Number of slice registers:  43 out of  5280 (1%)
+   Number of slice registers:  35 out of  5280 (1%)
    Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:           101 out of  5280 (2%)
-      Number of logic LUT4s:              62
-      Number of inserted feedthru LUT4s:   1
-      Number of ripple logic:             19 (38 LUT4s)
+   Number of LUT4s:            82 out of  5280 (2%)
+      Number of logic LUT4s:              48
+      Number of ripple logic:             17 (34 LUT4s)
    Number of IO sites used:   15 out of 39 (38%)
       Number of IO sites used for general PIO: 15
       Number of IO sites used for I3C: 0 out of 2 (0%)
@@ -51,15 +50,16 @@ Design Summary
    Number of PLLs:             0 out of 1 (0%)
    Number of Clocks:  2
       Net int_osc: 13 loads, 13 rising, 0 falling (Driver: Pin u_hfosc/CLKHF)
-      Net clk_shift: 23 loads, 0 rising, 23 falling (Driver: Pin
+      Net CLK_c: 15 loads, 0 rising, 15 falling (Driver: Pin
      u_clk_div.clk_out/Q)
-   Number of Clock Enables:  3
+   Number of Clock Enables:  2
       Net VCC_net: 1 loads, 0 SLICEs
-      Net n516: 9 loads, 9 SLICEs
-      Net u_display_s1.n37_adj_89: 1 loads, 1 SLICEs
+      Net n330: 9 loads, 9 SLICEs
    Number of LSRs:  3
-      Net cnt_0__N_75: 24 loads, 24 SLICEs
-      Net n501: 9 loads, 9 SLICEs
+      Net n315: 9 loads, 9 SLICEs
+      Net cnt_0__N_63: 16 loads, 16 SLICEs
+      Net u_clk_div.n170: 3 loads, 3 SLICEs
+   Top 10 highest fanout non-clock nets:
 
                                     Page 1
 
@@ -69,18 +69,16 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
-      Net u_clk_div.n321: 3 loads, 3 SLICEs
-   Top 10 highest fanout non-clock nets:
-      Net cnt_0__N_75: 26 loads
-      Net u_display_s1.n37: 21 loads
-      Net u_display_s1.R1_c_N_77[3]: 21 loads
-      Net u_display_s1.n354: 19 loads
-      Net n501: 9 loads
-      Net n516: 9 loads
-      Net u_display_s1.R1_c_N_77[0]: 7 loads
+      Net cnt_0__N_63: 18 loads
+      Net u_display_s1.n29_adj_77: 15 loads
+      Net n315: 9 loads
+      Net n330: 9 loads
+      Net cnt[7]: 7 loads
+      Net cnt[6]: 6 loads
       Net u_display_s1.cnt[2]: 6 loads
-      Net u_display_s1.cnt[3]: 6 loads
-      Net u_display_s1.R1_c_N_77[1]: 6 loads
+      Net cnt[3]: 5 loads
+      Net G1_c: 5 loads
+      Net u_clk_div.count[0]: 5 loads
 
 
 
@@ -104,9 +102,9 @@ IO (PIO) Attributes
 +---------------------+-----------+-----------+-------+-------+-----------+
 | LAT                 | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| CLK                 | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
 | OE                  | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| CLK                 | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | E                   | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
@@ -127,6 +125,8 @@ IO (PIO) Attributes
 | B1                  | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | G1                  | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| R1                  | OUTPUT    |           |       |       |           |
 
                                     Page 2
 
@@ -136,8 +136,6 @@ IO (PIO) Attributes
 
 IO (PIO) Attributes (cont)
 --------------------------
-+---------------------+-----------+-----------+-------+-------+-----------+
-| R1                  | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | nrst_in             | INPUT     |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
@@ -175,7 +173,9 @@ Run Time and Memory Usage
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
    Peak Memory Usage: 66 MB
-Checksum -- map: 9ca9e04aadaf17a5ee73b48c7ad0f9b63b6df7b0
+Checksum -- map: 7922c755706c3280513f3de7357207e6c185dac
+
+
 
 
 

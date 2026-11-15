@@ -1,35 +1,35 @@
 ----------------------------------------------------------------------
 Report for cell display_top.TECH
-Register bits:  43 of 5280 (0.814%)
+Register bits:  35 of 5280 (0.663%)
 I/O cells:      15
                                   Cell usage:
                                cell     count   Res Usage(%)
-                               CCU2        19          100.0
-                            FD1P3XZ        43          100.0
+                               CCU2        17          100.0
+                            FD1P3XZ        35          100.0
                          HSOSC_CORE         1          100.0
                                  IB         1          100.0
                                 INV         1          100.0
-                               LUT4        60          100.0
+                               LUT4        46          100.0
                                  OB        14          100.0
 SUB MODULES
                             clk_div         1
                          display_s1         1
-                              TOTAL       141
+                              TOTAL       117
 ----------------------------------------------------------------------
 Report for cell display_s1.v1
 Instance Path : u_display_s1
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                FA2        10           52.6
-                            FD1P3XZ        23           53.5
+                                FA2         8           47.1
+                            FD1P3XZ        15           42.9
                                 INV         1          100.0
-                               LUT4        48           80.0
-                              TOTAL        82
+                               LUT4        30           65.2
+                              TOTAL        54
 ----------------------------------------------------------------------
 Report for cell clk_div.v1
 Instance Path : u_clk_div
                                   Cell usage:
                                cell     count   Res Usage(%)
-                            FD1P3XZ         4            9.3
-                               LUT4         5            8.3
+                            FD1P3XZ         4           11.4
+                               LUT4         5           10.9
                               TOTAL         9
