@@ -1,8 +1,8 @@
-// STM32L432KC_SPI.h
-// Ellen Yu
-// ellyu@g.hmc.edu
-// Oct. 8 2026
-// TODO: <SHORT DESCRIPTION OF WHAT THIS FILE DOES>
+// STM32L432KC_SPI.c
+// Ellen Yu & Jessica Li
+// ellyu@g.hmc.edu & jesli@hmc.edu
+// Nov 14, 2026
+// Header for SPI1 (used for comms with accelerometer)
 
 #ifndef STM32L4_SPI_H
 #define STM32L4_SPI_H
@@ -12,10 +12,16 @@
 #include <stm32l432xx.h>
 
 
-#define OUTPUT_PIN PB0
-#define SCK_PIN    PB3
-#define MISO_PIN   PB4
-#define MOSI_PIN   PB5
+// GPIO pin definitions for SPI1
+// available pins for SPI1: 
+// SCK: PA5, PB3
+// MISO: PA6, PB4
+// MOSI: PA7, PB5
+
+#define OUTPUT_PIN PA10 // GPIO pin used for SPI NSS (chip select) output
+#define SCK_PIN    PA5 
+#define MISO_PIN   PA6 
+#define MOSI_PIN   PA7 
 ///////////////////////////////////////////////////////////////////////////////
 // Function prototypes
 ///////////////////////////////////////////////////////////////////////////////
