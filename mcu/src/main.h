@@ -12,7 +12,7 @@
 #include "ACCEL_SPI.h"            // initAccel(), accelReadMg(), accel_t
 #include "STM32L432KC_FLASH.h"
 
-#define BUTTON_PIN PA6 // LED pin for blinking (D4, green LED on development pcb)
+#define BUTTON_PIN PA9
 #define THRESH_X_Y 0x300
 #define THRESH_Z_UP 0x600
 #define THRESH_Z_DOWN 0x0

@@ -1,8 +1,8 @@
 // STM32L432KC_SPI.c
-// Ellen Yu
-// ellyu@g.hmc.edu
-// Oct. 8 2026
-// Code for SPI
+// Ellen Yu & Jessica Li
+// ellyu@g.hmc.edu & jesli@hmc.edu
+// Nov 14, 2026
+// Code for SPI1 (used for comms with accelerometer)
 
 #include "STM32L432KC_SPI.h"
 
@@ -18,9 +18,9 @@ void initSPI(int br, int cpol, int cpha){
     pinMode(MOSI_PIN, GPIO_ALT);
 
     // choose AF5 (SPI)
-    GPIOB->AFR[0] |= _VAL2FLD(GPIO_AFRL_AFSEL3, 0b0101);
-    GPIOB->AFR[0] |= _VAL2FLD(GPIO_AFRL_AFSEL4, 0b0101);
-    GPIOB->AFR[0] |= _VAL2FLD(GPIO_AFRL_AFSEL5, 0b0101);
+    GPIOA->AFR[0] |= _VAL2FLD(GPIO_AFRL_AFSEL5, 0b0101);
+    GPIOA->AFR[0] |= _VAL2FLD(GPIO_AFRL_AFSEL6, 0b0101);
+    GPIOA->AFR[0] |= _VAL2FLD(GPIO_AFRL_AFSEL7, 0b0101);
 
     
     // configure baud rate, CPOL and CPHA
@@ -43,18 +43,11 @@ void initSPI(int br, int cpol, int cpha){
     // need to set a GPIO as output and manually toggle 
         // in this case, used GPIO PB0
 
-    
-
     // enable SPI
     SPI1->CR1 |= _VAL2FLD(SPI_CR1_SPE, 0b1);
 
-
-
     digitalWrite(OUTPUT_PIN, 0);
-
     
-    
-
 }
 
 char spiSendReceive(char send){
