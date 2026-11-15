@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Sun Nov 15 15:38:46 2026
+Mapped on: Sun Nov 15 15:51:33 2026
 
 Design Information
 ------------------
@@ -22,10 +22,11 @@ Command line:   map -pdc C:/Users/jesli/Documents/GitHub/wizard/fpga/display_rad
 Design Summary
 --------------
 
-   Number of slice registers:  35 out of  5280 (1%)
-   Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:            82 out of  5280 (2%)
+   Number of slice registers:  36 out of  5280 (1%)
+   Number of I/O registers:      1 out of   117 (1%)
+   Number of LUT4s:            83 out of  5280 (2%)
       Number of logic LUT4s:              48
+      Number of inserted feedthru LUT4s:   1
       Number of ripple logic:             17 (34 LUT4s)
    Number of IO sites used:   15 out of 39 (38%)
       Number of IO sites used for general PIO: 15
@@ -49,17 +50,16 @@ Design Summary
    Number of EBRs:             0 out of 30 (0%)
    Number of PLLs:             0 out of 1 (0%)
    Number of Clocks:  2
-      Net int_osc: 13 loads, 13 rising, 0 falling (Driver: Pin u_hfosc/CLKHF)
+      Net int_osc: 15 loads, 15 rising, 0 falling (Driver: Pin u_hfosc/CLKHF)
       Net CLK_c: 15 loads, 0 rising, 15 falling (Driver: Pin
      u_clk_div.clk_out/Q)
    Number of Clock Enables:  2
       Net VCC_net: 1 loads, 0 SLICEs
-      Net n330: 9 loads, 9 SLICEs
+      Net n331: 9 loads, 9 SLICEs
    Number of LSRs:  3
-      Net n315: 9 loads, 9 SLICEs
+      Net n316: 9 loads, 9 SLICEs
       Net cnt_0__N_63: 16 loads, 16 SLICEs
-      Net u_clk_div.n170: 3 loads, 3 SLICEs
-   Top 10 highest fanout non-clock nets:
+      Net u_clk_div.n171: 3 loads, 3 SLICEs
 
                                     Page 1
 
@@ -69,10 +69,11 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
+   Top 10 highest fanout non-clock nets:
       Net cnt_0__N_63: 18 loads
       Net u_display_s1.n29_adj_77: 15 loads
-      Net n315: 9 loads
-      Net n330: 9 loads
+      Net n316: 9 loads
+      Net n331: 9 loads
       Net cnt[7]: 7 loads
       Net cnt[6]: 6 loads
       Net u_display_s1.cnt[2]: 6 loads
@@ -126,7 +127,6 @@ IO (PIO) Attributes
 +---------------------+-----------+-----------+-------+-------+-----------+
 | G1                  | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| R1                  | OUTPUT    |           |       |       |           |
 
                                     Page 2
 
@@ -136,8 +136,9 @@ IO (PIO) Attributes
 
 IO (PIO) Attributes (cont)
 --------------------------
+| R1                  | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| nrst_in             | INPUT     |           |       |       |           |
+| nrst_in             | INPUT     |           | I     |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 
 Removed logic
@@ -158,6 +159,8 @@ OSC 1:                                 Pin/Node Value
 ASIC Components
 ---------------
 
+Instance Name: u_sync/n1[0]
+         Type: IOLOGIC
 Instance Name: u_hfosc
          Type: HFOSC
 
@@ -173,10 +176,7 @@ Run Time and Memory Usage
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
    Peak Memory Usage: 66 MB
-Checksum -- map: 7922c755706c3280513f3de7357207e6c185dac
-
-
-
+Checksum -- map: 2f16e6855c6a429aa67bcd8261c4f0a11bd62c
 
 
 

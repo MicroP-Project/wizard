@@ -26,13 +26,20 @@ module display_top (
     // and also resets whenever external nrst_in is pulled low)
     logic [15:0] por_cnt = 16'd0;
     logic        nrst_int;
+	logic nrst_sync;
 
-    always_ff @(posedge int_osc) begin
-        if (!nrst_in)
-            por_cnt <= 16'd0;
-        else if (por_cnt != 16'hFFFF)
-            por_cnt <= por_cnt + 16'd1;
-    end
+	sync #(.WIDTH(1)) u_sync (
+		.clk(int_osc),
+		.d(nrst_in),
+		.q(nrst_sync)
+	);
+
+	always_ff @(posedge int_osc) begin
+		if (!nrst_sync)
+			por_cnt <= 16'd0;
+		else if (por_cnt != 16'hFFFF)
+			por_cnt <= por_cnt + 16'd1;
+	end
 
     assign nrst_int = (por_cnt == 16'hFFFF);
 

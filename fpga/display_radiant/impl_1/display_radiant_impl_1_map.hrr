@@ -3,29 +3,42 @@ Report for cell display_top
    Instance path: display_top
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         82        100.0
-                               LUTGATE	         48        100.0
+                                 IOLGC	       1.00        100.0
+                                  LUT4	         83        100.0
+                               LUTGATE	         49        100.0
                                 LUTCCU	         34        100.0
+                                 IOREG	          1        100.0
                                  IOBUF	         15        100.0
-                                PFUREG	         35        100.0
+                                PFUREG	         36        100.0
 SUB MODULES
                                   cell	      count    LUT4 Usage(%)
-                               clk_div	          1         6.1
-                            display_s1	          1        56.1
+                               clk_div	          1         6.0
+                            display_s1	          1        55.4
+                         sync(WIDTH=1)	          1         1.2
+---------------------------------------------------
+Report for cell sync(WIDTH=1)
+   Instance path: display_top/u_sync
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                 IOLGC	       1.00        100.0
+                                  LUT4	          1         1.2
+                               LUTGATE	          1         2.0
+                                 IOREG	          1        100.0
+                                PFUREG	          1         2.8
 ---------------------------------------------------
 Report for cell display_s1
    Instance path: display_top/u_display_s1
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         46        56.1
-                               LUTGATE	         30        62.5
+                                  LUT4	         46        55.4
+                               LUTGATE	         30        61.2
                                 LUTCCU	         16        47.1
-                                PFUREG	         15        42.9
+                                PFUREG	         15        41.7
 ---------------------------------------------------
 Report for cell clk_div
    Instance path: display_top/u_clk_div
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	          5         6.1
-                               LUTGATE	          5        10.4
-                                PFUREG	          4        11.4
+                                  LUT4	          5         6.0
+                               LUTGATE	          5        10.2
+                                PFUREG	          4        11.1
