@@ -1,5 +1,5 @@
 // Verilog netlist produced by program LSE :  version Radiant Software (64-bit) 2026.1.0.37.0
-// Netlist written on Sun Nov 15 14:43:19 2026
+// Netlist written on Sun Nov 15 14:57:29 2026
 // Source file index table: 
 // Object locations will have the form @<file_index>(<first_ line>[<left_column>],<last_line>[<right_column>])
 // file 0 "c:/users/jesli/documents/github/wizard/fpga/display_radiant/source/impl_1/clk_div.sv"
@@ -93,31 +93,13 @@ module display_top (input nrst_in, output R1, output G1, output B1,
     
     wire VCC_net;
     wire nrst_in_c;
-    wire CLK_c_N_4;
-    (* is_clock=1 *) wire int_osc;
-    wire nrst_sync;
-    wire CLK_c;
     wire GND_net;
-    
-    wire n30;
     
     VHI i2 (.Z(VCC_net));
     VLO i1 (.Z(GND_net));
-    OB LAT_pad (.I(CLK_c_N_4), .O(LAT));
-    OB OE_pad (.I(GND_net), .O(OE));
-    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=34, LSE_RLINE=38 *) clk_div u_clk_div (CLK_c, 
-            int_osc, n30, nrst_sync);
-    (* LSE_LINE_FILE_ID=27, LSE_LCOL=15, LSE_RCOL=5, LSE_LLINE=41, LSE_RLINE=49 *) display_s1 u_stage1 (CLK_c, 
-            CLK_c_N_4);
-    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=25, LSE_RLINE=29 *) \sync(WIDTH=1)  u_rst_sync (nrst_sync, 
-            int_osc, n30, nrst_in_c);
-    (* syn_instantiated=1 *) HSOSC_CORE hf_osc (.CLKHFPU(VCC_net), .CLKHFEN(VCC_net), 
-            .TRIM9(GND_net), .TRIM8(GND_net), .TRIM7(GND_net), .TRIM6(GND_net), 
-            .TRIM5(GND_net), .TRIM4(GND_net), .TRIM3(GND_net), .TRIM2(GND_net), 
-            .TRIM1(GND_net), .TRIM0(GND_net), .CLKHF(int_osc));
-    defparam hf_osc.CLKHF_DIV = "0b00";
-    defparam hf_osc.FABRIC_TRIME = "DISABLE";
-    OB CLK_pad (.I(CLK_c), .O(CLK));
+    OB LAT_pad (.I(GND_net), .O(LAT));
+    OB OE_pad (.I(VCC_net), .O(OE));
+    OB CLK_pad (.I(GND_net), .O(CLK));
     OB E_pad (.I(GND_net), .O(E));
     OB D_pad (.I(GND_net), .O(D));
     OB C_pad (.I(GND_net), .O(C));
@@ -128,94 +110,7 @@ module display_top (input nrst_in, output R1, output G1, output B1,
     OB R2_pad (.I(GND_net), .O(R2));
     OB B1_pad (.I(GND_net), .O(B1));
     OB G1_pad (.I(GND_net), .O(G1));
-    OB R1_pad (.I(VCC_net), .O(R1));
+    OB R1_pad (.I(GND_net), .O(R1));
     IB nrst_in_pad (.I(nrst_in), .O(nrst_in_c));
-    
-endmodule
-
-//
-// Verilog Description of module clk_div
-//
-
-module clk_div (output CLK_c, input int_osc, input n30, input nrst_sync);
-    
-    (* is_clock=1 *) wire int_osc;
-    wire [2:0]count;
-    
-    wire n15;
-    wire [2:0]n17;
-    
-    wire n31, VCC_net;
-    
-    FD1P3XZ count_19__i2 (.D(n17[2]), .SP(VCC_net), .CK(int_osc), .SR(n31), 
-            .Q(count[2]));
-    defparam count_19__i2.REGSET = "RESET";
-    defparam count_19__i2.SRMODE = "CE_OVER_LSR";
-    FD1P3XZ count_19__i1 (.D(n17[1]), .SP(VCC_net), .CK(int_osc), .SR(n31), 
-            .Q(count[1]));
-    defparam count_19__i1.REGSET = "RESET";
-    defparam count_19__i1.SRMODE = "CE_OVER_LSR";
-    (* lut_function="(!(A))" *) LUT4 i32_1_lut (.A(count[0]), .Z(n17[0]));
-    defparam i32_1_lut.INIT = "0x5555";
-    (* lut_function="(!(A (B (C)+!B !(C))+!A !(C)))" *) LUT4 i41_2_lut_3_lut (.A(count[1]), 
-            .B(count[0]), .C(count[2]), .Z(n17[2]));
-    defparam i41_2_lut_3_lut.INIT = "0x7878";
-    FD1P3XZ count_19__i0 (.D(n17[0]), .SP(VCC_net), .CK(int_osc), .SR(n31), 
-            .Q(count[0]));
-    defparam count_19__i0.REGSET = "RESET";
-    defparam count_19__i0.SRMODE = "CE_OVER_LSR";
-    (* lut_function="(!(A (B (C (D)))+!A !(B (C (D)))))" *) LUT4 i16_2_lut_4_lut (.A(CLK_c), 
-            .B(count[1]), .C(count[0]), .D(count[2]), .Z(n15));
-    defparam i16_2_lut_4_lut.INIT = "0x6aaa";
-    (* lut_function="(A (B (C+!(D))+!B !(D))+!A !(D))" *) LUT4 i18_2_lut_4_lut (.A(count[1]), 
-            .B(count[0]), .C(count[2]), .D(nrst_sync), .Z(n31));
-    defparam i18_2_lut_4_lut.INIT = "0x80ff";
-    (* lut_function="(!(A (B)+!A !(B)))" *) LUT4 i34_2_lut (.A(count[1]), 
-            .B(count[0]), .Z(n17[1]));
-    defparam i34_2_lut.INIT = "0x6666";
-    VHI i1 (.Z(VCC_net));
-    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=34, LSE_RLINE=38 *) FD1P3XZ clk_out (.D(n15), 
-            .SP(VCC_net), .CK(int_osc), .SR(n30), .Q(CLK_c));
-    defparam clk_out.REGSET = "RESET";
-    defparam clk_out.SRMODE = "CE_OVER_LSR";
-    
-endmodule
-
-//
-// Verilog Description of module display_s1
-//
-
-module display_s1 (input CLK_c, output CLK_c_N_4);
-    
-    
-    (* lut_function="(!(A))" *) LUT4 CLK_c_I_0_1_lut (.A(CLK_c), .Z(CLK_c_N_4));
-    defparam CLK_c_I_0_1_lut.INIT = "0x5555";
-    
-endmodule
-
-//
-// Verilog Description of module \sync(WIDTH=1) 
-//
-
-module \sync(WIDTH=1)  (output nrst_sync, input int_osc, output n30, input nrst_in_c);
-    
-    wire [0:0]n1;
-    (* is_clock=1 *) wire int_osc;
-    
-    wire VCC_net, GND_net;
-    
-    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=25, LSE_RLINE=29 *) IOL_B \n1[0]  (.PADDI(nrst_in_c), 
-            .DO1(GND_net), .DO0(GND_net), .CE(VCC_net), .IOLTO(GND_net), 
-            .HOLD(GND_net), .INCLK(int_osc), .OUTCLK(GND_net), .DI0(n1[0]));
-    defparam \n1[0] .LATCHIN = "NONE_REG";
-    defparam \n1[0] .DDROUT = "NO";
-    VLO i2 (.Z(GND_net));
-    (* lut_function="(!(A))" *) LUT4 i17_1_lut (.A(nrst_sync), .Z(n30));
-    defparam i17_1_lut.INIT = "0x5555";
-    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=25, LSE_RLINE=29 *) FD1P3XZ \q[0]  (.D(n1[0]), 
-            .SP(VCC_net), .CK(int_osc), .SR(GND_net), .Q(nrst_sync));
-    defparam \q[0] .REGSET = "RESET";
-    defparam \q[0] .SRMODE = "CE_OVER_LSR";
-    VHI i1 (.Z(VCC_net));
     
 endmodule

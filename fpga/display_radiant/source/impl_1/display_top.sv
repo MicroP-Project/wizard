@@ -38,15 +38,16 @@ module display_top(
    );
 
    // 4. Stage 1 static row driver
-   display_s1 u_stage1 (
-       .clk_shift(clk_3m),
-       .R1(R1), .G1(G1), .B1(B1),
-       .R2(R2), .G2(G2), .B2(B2),
-       .A(A), .B(B), .C(C), .D(D), .E(E),
-       .CLK(CLK),
-       .LAT(LAT),
-       .OE(OE)
-   );
+   display_s1 u_display_s1 (
+        .clk_shift(clk_shift),
+        .nrst(nrst_sync),        // <--- ONLY NEW LINE ADDED
+        .R1(R1), .G1(G1), .B1(B1),
+        .R2(R2), .G2(G2), .B2(B2),
+        .A(A), .B(B), .C(C), .D(D), .E(E),
+        .CLK(CLK),
+        .LAT(LAT),
+        .OE(OE)
+    );
 
 endmodule
 
