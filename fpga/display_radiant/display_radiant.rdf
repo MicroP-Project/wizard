@@ -18,6 +18,12 @@
         <Source name="source/impl_1/sync_tb.sv" type="Verilog" type_short="Verilog" excluded="TRUE">
             <Options VerilogStandard="System Verilog"/>
         </Source>
+        <Source name="fpgaDisplayConnections.pdc" type="Physical Constraints File" type_short="PDC">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1.xcf" type="Programming Project File" type_short="Programming">
+            <Options/>
+        </Source>
     </Implementation>
     <Strategy name="Strategy1" file="display_radiant1.sty"/>
 </RadiantProject>

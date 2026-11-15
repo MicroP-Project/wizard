@@ -25,7 +25,8 @@ module display_s1 (
     // Continuously toggle CLK to fill the 64-bit shift register with '1's,
     // keep LAT HIGH (transparent) and OE LOW (active-low output enabled)
     assign CLK = clk_shift;
-    assign LAT = 1'b1;
+    // assign LAT = 1'b1;
+	assign LAT = ~clk_shift; // Change!!
     assign OE  = 1'b0;
 
 endmodule
