@@ -8,20 +8,28 @@ I/O cells:      15
                          HSOSC_CORE         1          100.0
                                  IB         1          100.0
                               IOL_B         1          100.0
-                               LUT4         6          100.0
+                               LUT4         7          100.0
                                  OB        14          100.0
 SUB MODULES
                             clk_div         1
+                         display_s1         1
                       sync(WIDTH=1)         1
-                              TOTAL        30
+                              TOTAL        32
 ----------------------------------------------------------------------
 Report for cell clk_div.v1
 Instance Path : u_clk_div
                                   Cell usage:
                                cell     count   Res Usage(%)
                             FD1P3XZ         4           80.0
-                               LUT4         5           83.3
+                               LUT4         5           71.4
                               TOTAL         9
+----------------------------------------------------------------------
+Report for cell display_s1.v1
+Instance Path : u_stage1
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               LUT4         1           14.3
+                              TOTAL         1
 ----------------------------------------------------------------------
 Report for cell sync(WIDTH=1).v1
 Instance Path : u_rst_sync
@@ -29,5 +37,5 @@ Instance Path : u_rst_sync
                                cell     count   Res Usage(%)
                             FD1P3XZ         1           20.0
                               IOL_B         1          100.0
-                               LUT4         1           16.7
+                               LUT4         1           14.3
                               TOTAL         3

@@ -1,5 +1,5 @@
 // Verilog netlist produced by program LSE :  version Radiant Software (64-bit) 2026.1.0.37.0
-// Netlist written on Sun Nov 15 01:15:21 2026
+// Netlist written on Sun Nov 15 14:43:19 2026
 // Source file index table: 
 // Object locations will have the form @<file_index>(<first_ line>[<left_column>],<last_line>[<right_column>])
 // file 0 "c:/users/jesli/documents/github/wizard/fpga/display_radiant/source/impl_1/clk_div.sv"
@@ -93,6 +93,7 @@ module display_top (input nrst_in, output R1, output G1, output B1,
     
     wire VCC_net;
     wire nrst_in_c;
+    wire CLK_c_N_4;
     (* is_clock=1 *) wire int_osc;
     wire nrst_sync;
     wire CLK_c;
@@ -102,12 +103,14 @@ module display_top (input nrst_in, output R1, output G1, output B1,
     
     VHI i2 (.Z(VCC_net));
     VLO i1 (.Z(GND_net));
-    OB LAT_pad (.I(VCC_net), .O(LAT));
+    OB LAT_pad (.I(CLK_c_N_4), .O(LAT));
     OB OE_pad (.I(GND_net), .O(OE));
     (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=34, LSE_RLINE=38 *) clk_div u_clk_div (CLK_c, 
             int_osc, n30, nrst_sync);
-    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=25, LSE_RLINE=29 *) \sync(WIDTH=1)  u_rst_sync (nrst_in_c, 
-            nrst_sync, int_osc, n30);
+    (* LSE_LINE_FILE_ID=27, LSE_LCOL=15, LSE_RCOL=5, LSE_LLINE=41, LSE_RLINE=49 *) display_s1 u_stage1 (CLK_c, 
+            CLK_c_N_4);
+    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=25, LSE_RLINE=29 *) \sync(WIDTH=1)  u_rst_sync (nrst_sync, 
+            int_osc, n30, nrst_in_c);
     (* syn_instantiated=1 *) HSOSC_CORE hf_osc (.CLKHFPU(VCC_net), .CLKHFEN(VCC_net), 
             .TRIM9(GND_net), .TRIM8(GND_net), .TRIM7(GND_net), .TRIM6(GND_net), 
             .TRIM5(GND_net), .TRIM4(GND_net), .TRIM3(GND_net), .TRIM2(GND_net), 
@@ -152,6 +155,8 @@ module clk_div (output CLK_c, input int_osc, input n30, input nrst_sync);
             .Q(count[1]));
     defparam count_19__i1.REGSET = "RESET";
     defparam count_19__i1.SRMODE = "CE_OVER_LSR";
+    (* lut_function="(!(A))" *) LUT4 i32_1_lut (.A(count[0]), .Z(n17[0]));
+    defparam i32_1_lut.INIT = "0x5555";
     (* lut_function="(!(A (B (C)+!B !(C))+!A !(C)))" *) LUT4 i41_2_lut_3_lut (.A(count[1]), 
             .B(count[0]), .C(count[2]), .Z(n17[2]));
     defparam i41_2_lut_3_lut.INIT = "0x7878";
@@ -162,14 +167,12 @@ module clk_div (output CLK_c, input int_osc, input n30, input nrst_sync);
     (* lut_function="(!(A (B (C (D)))+!A !(B (C (D)))))" *) LUT4 i16_2_lut_4_lut (.A(CLK_c), 
             .B(count[1]), .C(count[0]), .D(count[2]), .Z(n15));
     defparam i16_2_lut_4_lut.INIT = "0x6aaa";
-    (* lut_function="(!(A (B)+!A !(B)))" *) LUT4 i34_2_lut (.A(count[1]), 
-            .B(count[0]), .Z(n17[1]));
-    defparam i34_2_lut.INIT = "0x6666";
     (* lut_function="(A (B (C+!(D))+!B !(D))+!A !(D))" *) LUT4 i18_2_lut_4_lut (.A(count[1]), 
             .B(count[0]), .C(count[2]), .D(nrst_sync), .Z(n31));
     defparam i18_2_lut_4_lut.INIT = "0x80ff";
-    (* lut_function="(!(A))" *) LUT4 i32_1_lut (.A(count[0]), .Z(n17[0]));
-    defparam i32_1_lut.INIT = "0x5555";
+    (* lut_function="(!(A (B)+!A !(B)))" *) LUT4 i34_2_lut (.A(count[1]), 
+            .B(count[0]), .Z(n17[1]));
+    defparam i34_2_lut.INIT = "0x6666";
     VHI i1 (.Z(VCC_net));
     (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=34, LSE_RLINE=38 *) FD1P3XZ clk_out (.D(n15), 
             .SP(VCC_net), .CK(int_osc), .SR(n30), .Q(CLK_c));
@@ -179,11 +182,22 @@ module clk_div (output CLK_c, input int_osc, input n30, input nrst_sync);
 endmodule
 
 //
+// Verilog Description of module display_s1
+//
+
+module display_s1 (input CLK_c, output CLK_c_N_4);
+    
+    
+    (* lut_function="(!(A))" *) LUT4 CLK_c_I_0_1_lut (.A(CLK_c), .Z(CLK_c_N_4));
+    defparam CLK_c_I_0_1_lut.INIT = "0x5555";
+    
+endmodule
+
+//
 // Verilog Description of module \sync(WIDTH=1) 
 //
 
-module \sync(WIDTH=1)  (input nrst_in_c, output nrst_sync, input int_osc, 
-            output n30);
+module \sync(WIDTH=1)  (output nrst_sync, input int_osc, output n30, input nrst_in_c);
     
     wire [0:0]n1;
     (* is_clock=1 *) wire int_osc;

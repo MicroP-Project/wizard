@@ -17,5 +17,5 @@ Writing output file 'display_radiant_impl_1_syn.udb'.
 POSTSYN finished successfully.
 Total CPU Time: 0 secs 
 Total REAL Time: 0 secs 
-Peak Memory Usage: 43 MB
-Checksum -- postsyn: 4f7f86cc4836783d5e6f40c321bdcdb41481fba3
+Peak Memory Usage: 42 MB
+Checksum -- postsyn: fb72587471605dd22aa5953d793ebdda2c2f85f3
