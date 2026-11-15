@@ -1,0 +1,33 @@
+---------------------------------------------------
+Report for cell display_top
+   Instance path: display_top
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                 IOLGC	       1.00        100.0
+                                  LUT4	          9        100.0
+                               LUTGATE	          9        100.0
+                                 IOREG	          1        100.0
+                                 IOBUF	         15        100.0
+                                PFUREG	          5        100.0
+SUB MODULES
+                                  cell	      count    LUT4 Usage(%)
+                               clk_div	          1        55.6
+                         sync(WIDTH=1)	          1        11.1
+---------------------------------------------------
+Report for cell clk_div
+   Instance path: display_top/u_clk_div
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	          5        55.6
+                               LUTGATE	          5        55.6
+                                PFUREG	          4        80.0
+---------------------------------------------------
+Report for cell sync(WIDTH=1)
+   Instance path: display_top/u_rst_sync
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                 IOLGC	       1.00        100.0
+                                  LUT4	          1        11.1
+                               LUTGATE	          1        11.1
+                                 IOREG	          1        100.0
+                                PFUREG	          1        20.0

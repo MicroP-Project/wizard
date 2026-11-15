@@ -1,0 +1,207 @@
+// Verilog netlist produced by program LSE :  version Radiant Software (64-bit) 2026.1.0.37.0
+// Netlist written on Sun Nov 15 01:15:21 2026
+// Source file index table: 
+// Object locations will have the form @<file_index>(<first_ line>[<left_column>],<last_line>[<right_column>])
+// file 0 "c:/users/jesli/documents/github/wizard/fpga/display_radiant/source/impl_1/clk_div.sv"
+// file 1 "c:/users/jesli/documents/github/wizard/fpga/display_radiant/source/impl_1/display_s1.sv"
+// file 2 "c:/users/jesli/documents/github/wizard/fpga/display_radiant/source/impl_1/display_top.sv"
+// file 3 "c:/users/jesli/documents/github/wizard/fpga/display_radiant/source/impl_1/sync.sv"
+// file 4 "c:/lscc/radiant/2026.1/ip/pmi/pmi_ice40up.v"
+// file 5 "c:/lscc/radiant/2026.1/ip/pmi/pmi_ice40up.vhd"
+// file 6 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc.v"
+// file 7 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_distributed_ram.v"
+// file 8 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_ecc.v"
+// file 9 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_flag_and_cnts_logic.v"
+// file 10 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_gray_reg.v"
+// file 11 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_gray_synchronizer.v"
+// file 12 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden.v"
+// file 13 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden_prim.v"
+// file 14 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden_rd_ctrl_logic.v"
+// file 15 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden_rd_output_logic.v"
+// file 16 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden_ring_counter.v"
+// file 17 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_harden_wr_ctrl_logic.v"
+// file 18 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_prim_gen.v"
+// file 19 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_rd_ctrl_logic.v"
+// file 20 "c:/lscc/radiant/2026.1/ip/lfmxo4/fifo_dc/rtl/lscc_lfmxo4_fifo_dc_wr_ctrl_logic.v"
+// file 21 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dp/rtl/lscc_lfmxo4_ram_dp.v"
+// file 22 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dp/rtl/lscc_lfmxo4_ram_dp_behavioral.v"
+// file 23 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dp/rtl/lscc_lfmxo4_ram_dp_functions.vh"
+// file 24 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dp/rtl/lscc_lfmxo4_ram_dp_impl.v"
+// file 25 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dp/rtl/lscc_lfmxo4_ram_dp_lut_decode.v"
+// file 26 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dq/rtl/hsiao_ecc_decoder.v"
+// file 27 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dq/rtl/hsiao_ecc_encoder.v"
+// file 28 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dq/rtl/lscc_lfmxo4_ram_dq.v"
+// file 29 "c:/lscc/radiant/2026.1/ip/lfmxo4/ram_dq/rtl/lscc_lfmxo4_ram_dq_lut_decode.v"
+// file 30 "c:/lscc/radiant/2026.1/ip/common/adder/rtl/lscc_adder.v"
+// file 31 "c:/lscc/radiant/2026.1/ip/common/adder_subtractor/rtl/lscc_add_sub.v"
+// file 32 "c:/lscc/radiant/2026.1/ip/common/complex_mult/rtl/lscc_complex_mult.v"
+// file 33 "c:/lscc/radiant/2026.1/ip/common/counter/rtl/lscc_cntr.v"
+// file 34 "c:/lscc/radiant/2026.1/ip/common/fifo/rtl/lscc_fifo.v"
+// file 35 "c:/lscc/radiant/2026.1/ip/common/fifo_dc/rtl/lscc_fifo_dc.v"
+// file 36 "c:/lscc/radiant/2026.1/ip/common/mult_accumulate/rtl/lscc_mult_accumulate.v"
+// file 37 "c:/lscc/radiant/2026.1/ip/common/mult_add_sub/rtl/lscc_mult_add_sub.v"
+// file 38 "c:/lscc/radiant/2026.1/ip/common/mult_add_sub_sum/rtl/lscc_mult_add_sub_sum.v"
+// file 39 "c:/lscc/radiant/2026.1/ip/common/multiplier/rtl/lscc_multiplier.v"
+// file 40 "c:/lscc/radiant/2026.1/ip/common/ram_dp/rtl/lscc_ram_dp.v"
+// file 41 "c:/lscc/radiant/2026.1/ip/common/ram_dq/rtl/lscc_ram_dq.v"
+// file 42 "c:/lscc/radiant/2026.1/ip/common/rom/rtl/lscc_rom.v"
+// file 43 "c:/lscc/radiant/2026.1/ip/common/subtractor/rtl/lscc_subtractor.v"
+// file 44 "c:/lscc/radiant/2026.1/ip/pmi/pmi_add.v"
+// file 45 "c:/lscc/radiant/2026.1/ip/pmi/pmi_addsub.v"
+// file 46 "c:/lscc/radiant/2026.1/ip/pmi/pmi_complex_mult.v"
+// file 47 "c:/lscc/radiant/2026.1/ip/pmi/pmi_counter.v"
+// file 48 "c:/lscc/radiant/2026.1/ip/pmi/pmi_dsp.v"
+// file 49 "c:/lscc/radiant/2026.1/ip/pmi/pmi_fifo.v"
+// file 50 "c:/lscc/radiant/2026.1/ip/pmi/pmi_fifo_dc.v"
+// file 51 "c:/lscc/radiant/2026.1/ip/pmi/pmi_mac.v"
+// file 52 "c:/lscc/radiant/2026.1/ip/pmi/pmi_mult.v"
+// file 53 "c:/lscc/radiant/2026.1/ip/pmi/pmi_multaddsub.v"
+// file 54 "c:/lscc/radiant/2026.1/ip/pmi/pmi_multaddsubsum.v"
+// file 55 "c:/lscc/radiant/2026.1/ip/pmi/pmi_ram_dp.v"
+// file 56 "c:/lscc/radiant/2026.1/ip/pmi/pmi_ram_dp_be.v"
+// file 57 "c:/lscc/radiant/2026.1/ip/pmi/pmi_ram_dq.v"
+// file 58 "c:/lscc/radiant/2026.1/ip/pmi/pmi_ram_dq_be.v"
+// file 59 "c:/lscc/radiant/2026.1/ip/pmi/pmi_rom.v"
+// file 60 "c:/lscc/radiant/2026.1/ip/pmi/pmi_sub.v"
+// file 61 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/ccu2_b.v"
+// file 62 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/fd1p3bz.v"
+// file 63 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/fd1p3dz.v"
+// file 64 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/fd1p3iz.v"
+// file 65 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/fd1p3jz.v"
+// file 66 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/hsosc.v"
+// file 67 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/hsosc1p8v.v"
+// file 68 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/ib.v"
+// file 69 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/ifd1p3az.v"
+// file 70 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/lsosc.v"
+// file 71 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/lsosc1p8v.v"
+// file 72 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/ob.v"
+// file 73 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/obz_b.v"
+// file 74 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/ofd1p3az.v"
+// file 75 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/pdp4k.v"
+// file 76 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/rgb.v"
+// file 77 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/rgb1p8v.v"
+// file 78 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/sp256k.v"
+// file 79 "c:/lscc/radiant/2026.1/cae_library/simulation/verilog/ice40up/legacy.v"
+
+//
+// Verilog Description of module display_top
+//
+
+module display_top (input nrst_in, output R1, output G1, output B1, 
+            output R2, output G2, output B2, output A, output B, output C, 
+            output D, output E, output CLK, output LAT, output OE);
+    
+    wire VCC_net;
+    wire nrst_in_c;
+    (* is_clock=1 *) wire int_osc;
+    wire nrst_sync;
+    wire CLK_c;
+    wire GND_net;
+    
+    wire n30;
+    
+    VHI i2 (.Z(VCC_net));
+    VLO i1 (.Z(GND_net));
+    OB LAT_pad (.I(VCC_net), .O(LAT));
+    OB OE_pad (.I(GND_net), .O(OE));
+    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=34, LSE_RLINE=38 *) clk_div u_clk_div (CLK_c, 
+            int_osc, n30, nrst_sync);
+    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=25, LSE_RLINE=29 *) \sync(WIDTH=1)  u_rst_sync (nrst_in_c, 
+            nrst_sync, int_osc, n30);
+    (* syn_instantiated=1 *) HSOSC_CORE hf_osc (.CLKHFPU(VCC_net), .CLKHFEN(VCC_net), 
+            .TRIM9(GND_net), .TRIM8(GND_net), .TRIM7(GND_net), .TRIM6(GND_net), 
+            .TRIM5(GND_net), .TRIM4(GND_net), .TRIM3(GND_net), .TRIM2(GND_net), 
+            .TRIM1(GND_net), .TRIM0(GND_net), .CLKHF(int_osc));
+    defparam hf_osc.CLKHF_DIV = "0b00";
+    defparam hf_osc.FABRIC_TRIME = "DISABLE";
+    OB CLK_pad (.I(CLK_c), .O(CLK));
+    OB E_pad (.I(GND_net), .O(E));
+    OB D_pad (.I(GND_net), .O(D));
+    OB C_pad (.I(GND_net), .O(C));
+    OB B_pad (.I(GND_net), .O(B));
+    OB A_pad (.I(GND_net), .O(A));
+    OB B2_pad (.I(GND_net), .O(B2));
+    OB G2_pad (.I(GND_net), .O(G2));
+    OB R2_pad (.I(GND_net), .O(R2));
+    OB B1_pad (.I(GND_net), .O(B1));
+    OB G1_pad (.I(GND_net), .O(G1));
+    OB R1_pad (.I(VCC_net), .O(R1));
+    IB nrst_in_pad (.I(nrst_in), .O(nrst_in_c));
+    
+endmodule
+
+//
+// Verilog Description of module clk_div
+//
+
+module clk_div (output CLK_c, input int_osc, input n30, input nrst_sync);
+    
+    (* is_clock=1 *) wire int_osc;
+    wire [2:0]count;
+    
+    wire n15;
+    wire [2:0]n17;
+    
+    wire n31, VCC_net;
+    
+    FD1P3XZ count_19__i2 (.D(n17[2]), .SP(VCC_net), .CK(int_osc), .SR(n31), 
+            .Q(count[2]));
+    defparam count_19__i2.REGSET = "RESET";
+    defparam count_19__i2.SRMODE = "CE_OVER_LSR";
+    FD1P3XZ count_19__i1 (.D(n17[1]), .SP(VCC_net), .CK(int_osc), .SR(n31), 
+            .Q(count[1]));
+    defparam count_19__i1.REGSET = "RESET";
+    defparam count_19__i1.SRMODE = "CE_OVER_LSR";
+    (* lut_function="(!(A (B (C)+!B !(C))+!A !(C)))" *) LUT4 i41_2_lut_3_lut (.A(count[1]), 
+            .B(count[0]), .C(count[2]), .Z(n17[2]));
+    defparam i41_2_lut_3_lut.INIT = "0x7878";
+    FD1P3XZ count_19__i0 (.D(n17[0]), .SP(VCC_net), .CK(int_osc), .SR(n31), 
+            .Q(count[0]));
+    defparam count_19__i0.REGSET = "RESET";
+    defparam count_19__i0.SRMODE = "CE_OVER_LSR";
+    (* lut_function="(!(A (B (C (D)))+!A !(B (C (D)))))" *) LUT4 i16_2_lut_4_lut (.A(CLK_c), 
+            .B(count[1]), .C(count[0]), .D(count[2]), .Z(n15));
+    defparam i16_2_lut_4_lut.INIT = "0x6aaa";
+    (* lut_function="(!(A (B)+!A !(B)))" *) LUT4 i34_2_lut (.A(count[1]), 
+            .B(count[0]), .Z(n17[1]));
+    defparam i34_2_lut.INIT = "0x6666";
+    (* lut_function="(A (B (C+!(D))+!B !(D))+!A !(D))" *) LUT4 i18_2_lut_4_lut (.A(count[1]), 
+            .B(count[0]), .C(count[2]), .D(nrst_sync), .Z(n31));
+    defparam i18_2_lut_4_lut.INIT = "0x80ff";
+    (* lut_function="(!(A))" *) LUT4 i32_1_lut (.A(count[0]), .Z(n17[0]));
+    defparam i32_1_lut.INIT = "0x5555";
+    VHI i1 (.Z(VCC_net));
+    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=34, LSE_RLINE=38 *) FD1P3XZ clk_out (.D(n15), 
+            .SP(VCC_net), .CK(int_osc), .SR(n30), .Q(CLK_c));
+    defparam clk_out.REGSET = "RESET";
+    defparam clk_out.SRMODE = "CE_OVER_LSR";
+    
+endmodule
+
+//
+// Verilog Description of module \sync(WIDTH=1) 
+//
+
+module \sync(WIDTH=1)  (input nrst_in_c, output nrst_sync, input int_osc, 
+            output n30);
+    
+    wire [0:0]n1;
+    (* is_clock=1 *) wire int_osc;
+    
+    wire VCC_net, GND_net;
+    
+    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=25, LSE_RLINE=29 *) IOL_B \n1[0]  (.PADDI(nrst_in_c), 
+            .DO1(GND_net), .DO0(GND_net), .CE(VCC_net), .IOLTO(GND_net), 
+            .HOLD(GND_net), .INCLK(int_osc), .OUTCLK(GND_net), .DI0(n1[0]));
+    defparam \n1[0] .LATCHIN = "NONE_REG";
+    defparam \n1[0] .DDROUT = "NO";
+    VLO i2 (.Z(GND_net));
+    (* lut_function="(!(A))" *) LUT4 i17_1_lut (.A(nrst_sync), .Z(n30));
+    defparam i17_1_lut.INIT = "0x5555";
+    (* LSE_LINE_FILE_ID=27, LSE_LCOL=6, LSE_RCOL=5, LSE_LLINE=25, LSE_RLINE=29 *) FD1P3XZ \q[0]  (.D(n1[0]), 
+            .SP(VCC_net), .CK(int_osc), .SR(GND_net), .Q(nrst_sync));
+    defparam \q[0] .REGSET = "RESET";
+    defparam \q[0] .SRMODE = "CE_OVER_LSR";
+    VHI i1 (.Z(VCC_net));
+    
+endmodule
