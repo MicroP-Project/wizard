@@ -1,38 +1,6 @@
 // Jessica Li & Ellen Yu  |  jesli@g.hmc.edu & ellyu@g.hmc.edu  |  11/15/2026
-// Stage 1 static row driver: lights up Row 0 in solid red to verify HUB75 wiring & 5V power
+// Stage 1 static row driver with exact FM6124EJ initialization sequence
 
-/*
-module display_s1 (
-    input  logic clk_shift,
-    output logic R1, G1, B1,
-    output logic R2, G2, B2,
-    output logic A, B, C, D, E,
-    output logic CLK,
-    output logic LAT,
-    output logic OE
-);
-    // Drive only upper-half Red (R1) HIGH; keep all other color channels OFF
-    assign R1 = 1'b1;
-    assign G1 = 1'b0;
-    assign B1 = 1'b0;
-
-    assign R2 = 1'b0;
-    assign G2 = 1'b0;
-    assign B2 = 1'b0;
-
-    // Row address 00000 selects Row 0 (top half) and Row 32 (bottom half)
-    assign {E, D, C, B, A} = 5'b00000;
-
-    // Continuously toggle CLK to fill the 64-bit shift register with '1's,
-    // keep LAT HIGH (transparent) and OE LOW (active-low output enabled)
-    assign CLK = clk_shift;
-    // assign LAT = 1'b1;
-	assign LAT = ~clk_shift; // Change!!
-    assign OE  = 1'b0;
-
-endmodule */
-
-// Stage 1 static row driver with FM6124 power-up initialization
 module display_s1 (
     input  logic clk_shift,
     input  logic nrst,
@@ -43,55 +11,88 @@ module display_s1 (
     output logic LAT,
     output logic OE
 );
-    // Standard 16-bit enable word for FM6124 (all outputs enabled, standard gain)
+    // FM6124 Register 1 (11-clock LAT): enable all outputs, max current gain
     localparam logic [15:0] FM6124_REG1 = 16'h7FFF;
+    // FM6124 Register 2 (12-clock LAT): default configuration
+    localparam logic [15:0] FM6124_REG2 = 16'h0040;
 
-    logic [6:0] init_cnt;   // Counts 0..64 clock cycles for 4 cascaded 16-bit drivers
-    logic       init_done;
+    // Sequence phases:
+    // 0: 64 clocks for REG1 (LAT high for last 11 clocks of each 16-bit chip: 53..63)
+    // 1: 64 clocks for REG2 (LAT high for last 12 clocks of each 16-bit chip: 52..63)
+    // 2: Normal running mode (shift 64 '1's into R1, then pulse LAT for 1 cycle)
+    logic [1:0] phase;
+    logic [6:0] cnt;
 
-    // Step through 64 clocks on negedge of clk_shift so data & LAT are stable on posedge
     always_ff @(negedge clk_shift or negedge nrst) begin
         if (!nrst) begin
-            init_cnt  <= 7'd0;
-            init_done <= 1'b0;
-        end else if (!init_done) begin
-            if (init_cnt == 7'd64) begin
-                init_done <= 1'b1;
+            phase <= 2'd0;
+            cnt   <= 7'd0;
+        end else begin
+            if (phase == 2'd0) begin
+                if (cnt == 7'd63) begin
+                    phase <= 2'd1;
+                    cnt   <= 7'd0;
+                end else begin
+                    cnt <= cnt + 7'd1;
+                end
+            end else if (phase == 2'd1) begin
+                if (cnt == 7'd63) begin
+                    phase <= 2'd2;
+                    cnt   <= 7'd0;
+                end else begin
+                    cnt <= cnt + 7'd1;
+                end
             end else begin
-                init_cnt <= init_cnt + 7'd1;
+                // Continuous 65-cycle frame: 64 shifts (0..63) + 1 latch cycle (64)
+                if (cnt == 7'd64)
+                    cnt <= 7'd0;
+                else
+                    cnt <= cnt + 7'd1;
             end
         end
     end
 
-    // Select Row 0 (top half) and Row 32 (bottom half)
+    // Row address 00000 selects Row 0 (top half) and Row 32 (bottom half)
     assign {E, D, C, B, A} = 5'b00000;
-    assign CLK = clk_shift;
 
-    // During init (cycles 0..63): clock FM6124_REG1 into all color channels,
-    // pulsing LAT high during the last 3 bits of every 16-bit word (bits 13, 14, 15).
-    // After init: hold R1 = 1, pulse LAT on every cycle, and enable output (OE = 0).
-    wire [3:0] bit_idx = 4'd15 - init_cnt[3:0];
-    wire       cfg_bit = FM6124_REG1[bit_idx];
+    // Gate CLK during the 1-cycle latch state (cnt == 64) in phase 2
+    assign CLK = (phase == 2'd2 && cnt == 7'd64) ? 1'b0 : clk_shift;
+
+    wire [3:0] bit_idx = 4'd15 - cnt[3:0];
 
     always_comb begin
-        if (!init_done) begin
-            R1  = cfg_bit;
-            G1  = cfg_bit;
-            B1  = cfg_bit;
-            R2  = cfg_bit;
-            G2  = cfg_bit;
-            B2  = cfg_bit;
-            LAT = (init_cnt < 7'd64) && (init_cnt[3:0] >= 4'd13);
-            OE  = 1'b1; // Keep display blanked during register config
+        if (phase == 2'd0) begin
+            // Write REG1 across all 4 cascaded 16-bit FM6124 chips
+            R1  = FM6124_REG1[bit_idx];
+            G1  = FM6124_REG1[bit_idx];
+            B1  = FM6124_REG1[bit_idx];
+            R2  = FM6124_REG1[bit_idx];
+            G2  = FM6124_REG1[bit_idx];
+            B2  = FM6124_REG1[bit_idx];
+            // FM6124 REG1 latch width = 11 clock cycles (cnt 53..63)
+            LAT = (cnt >= 7'd53);
+            OE  = 1'b1;
+        end else if (phase == 2'd1) begin
+            // Write REG2 across all 4 cascaded 16-bit FM6124 chips
+            R1  = FM6124_REG2[bit_idx];
+            G1  = FM6124_REG2[bit_idx];
+            B1  = FM6124_REG2[bit_idx];
+            R2  = FM6124_REG2[bit_idx];
+            G2  = FM6124_REG2[bit_idx];
+            B2  = FM6124_REG2[bit_idx];
+            // FM6124 REG2 latch width = 12 clock cycles (cnt 52..63)
+            LAT = (cnt >= 7'd52);
+            OE  = 1'b1;
         end else begin
+            // Normal display: shift '1's into R1 for 64 clocks, then pulse LAT on cycle 64
             R1  = 1'b1;
             G1  = 1'b0;
             B1  = 1'b0;
             R2  = 1'b0;
             G2  = 1'b0;
             B2  = 1'b0;
-            LAT = ~clk_shift;
-            OE  = 1'b0; // Enable LED outputs
+            LAT = (cnt == 7'd64);
+            OE  = 1'b0;
         end
     end
 

@@ -1,5 +1,5 @@
 // Verilog netlist produced by program LSE :  version Radiant Software (64-bit) 2026.1.0.37.0
-// Netlist written on Sun Nov 15 14:57:29 2026
+// Netlist written on Sun Nov 15 15:07:04 2026
 // Source file index table: 
 // Object locations will have the form @<file_index>(<first_ line>[<left_column>],<last_line>[<right_column>])
 // file 0 "c:/users/jesli/documents/github/wizard/fpga/display_radiant/source/impl_1/clk_div.sv"
@@ -97,20 +97,20 @@ module display_top (input nrst_in, output R1, output G1, output B1,
     
     VHI i2 (.Z(VCC_net));
     VLO i1 (.Z(GND_net));
+    IB nrst_in_pad (.I(nrst_in), .O(nrst_in_c));
+    OB R1_pad (.I(GND_net), .O(R1));
+    OB G1_pad (.I(GND_net), .O(G1));
+    OB B1_pad (.I(GND_net), .O(B1));
+    OB R2_pad (.I(GND_net), .O(R2));
+    OB G2_pad (.I(GND_net), .O(G2));
+    OB B2_pad (.I(GND_net), .O(B2));
+    OB A_pad (.I(GND_net), .O(A));
+    OB B_pad (.I(GND_net), .O(B));
+    OB C_pad (.I(GND_net), .O(C));
+    OB D_pad (.I(GND_net), .O(D));
+    OB E_pad (.I(GND_net), .O(E));
+    OB CLK_pad (.I(GND_net), .O(CLK));
     OB LAT_pad (.I(GND_net), .O(LAT));
     OB OE_pad (.I(VCC_net), .O(OE));
-    OB CLK_pad (.I(GND_net), .O(CLK));
-    OB E_pad (.I(GND_net), .O(E));
-    OB D_pad (.I(GND_net), .O(D));
-    OB C_pad (.I(GND_net), .O(C));
-    OB B_pad (.I(GND_net), .O(B));
-    OB A_pad (.I(GND_net), .O(A));
-    OB B2_pad (.I(GND_net), .O(B2));
-    OB G2_pad (.I(GND_net), .O(G2));
-    OB R2_pad (.I(GND_net), .O(R2));
-    OB B1_pad (.I(GND_net), .O(B1));
-    OB G1_pad (.I(GND_net), .O(G1));
-    OB R1_pad (.I(GND_net), .O(R1));
-    IB nrst_in_pad (.I(nrst_in), .O(nrst_in_c));
     
 endmodule

@@ -2,8 +2,8 @@
 
 <clocks>
     <clockitem name = "u_display_s1/n2"  type = "net" />
-    <clockitem name = "clk_shift"  type = "net" />
     <clockitem name = "int_osc"  type = "net" />
+    <clockitem name = "clk_shift"  type = "net" />
 </clocks>
 
 <!--
