@@ -40,6 +40,7 @@ void initSPI(int br, int cpol, int cpha){
 
     // configure NSS pin
     SPI1->CR1 |= _VAL2FLD(SPI_CR1_SSM, 0b0);
+
     // need to set a GPIO as output and manually toggle 
         // in this case, used GPIO PB0
 

@@ -18,7 +18,7 @@
 // MISO: PA6, PB4
 // MOSI: PA7, PB5
 
-#define OUTPUT_PIN PB0 // GPIO pin used for SPI NSS (chip select) output
+#define OUTPUT_PIN PA10 // GPIO pin used for SPI NSS (chip select) output
 #define SCK_PIN    PA5 
 #define MISO_PIN   PA6 
 #define MOSI_PIN   PA7 
