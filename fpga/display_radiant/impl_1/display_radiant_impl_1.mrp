@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Sun Nov 15 15:07:08 2026
+Mapped on: Sun Nov 15 15:20:31 2026
 
 Design Information
 ------------------
@@ -22,11 +22,11 @@ Command line:   map -pdc C:/Users/jesli/Documents/GitHub/wizard/fpga/display_rad
 Design Summary
 --------------
 
-   Number of slice registers:   0 out of  5280 (0%)
+   Number of slice registers:  29 out of  5280 (1%)
    Number of I/O registers:      0 out of   117 (0%)
-   Number of LUT4s:             2 out of  5280 (<1%)
-      Number of logic LUT4s:               2
-      Number of ripple logic:              0 (0 LUT4s)
+   Number of LUT4s:            71 out of  5280 (1%)
+      Number of logic LUT4s:              45
+      Number of ripple logic:             13 (26 LUT4s)
    Number of IO sites used:   15 out of 39 (38%)
       Number of IO sites used for general PIO: 15
       Number of IO sites used for I3C: 0 out of 2 (0%)
@@ -38,7 +38,7 @@ Design Summary
       Number of IO sites used for PIO+I3C+OD+RGB: 15 out of 39 (38%)
    Number of DSPs:             0 out of 8 (0%)
    Number of I2Cs:             0 out of 2 (0%)
-   Number of High Speed OSCs:  0 out of 1 (0%)
+   Number of High Speed OSCs:  1 out of 1 (100%)
    Number of Low Speed OSCs:   0 out of 1 (0%)
    Number of RGB PWM:          0 out of 1 (0%)
    Number of RGB Drivers:      0 out of 1 (0%)
@@ -48,11 +48,37 @@ Design Summary
    Number of SPIs:             0 out of 2 (0%)
    Number of EBRs:             0 out of 30 (0%)
    Number of PLLs:             0 out of 1 (0%)
-   Number of Clocks:  0
-   Number of Clock Enables:  0
-   Number of LSRs:  0
+   Number of Clocks:  2
+      Net int_osc: 13 loads, 13 rising, 0 falling (Driver: Pin u_hfosc/CLKHF)
+      Net clk_shift: 9 loads, 0 rising, 9 falling (Driver: Pin
+     u_clk_div.clk_out/Q)
+   Number of Clock Enables:  2
+      Net VCC_net: 1 loads, 0 SLICEs
+      Net n359: 9 loads, 9 SLICEs
+   Number of LSRs:  3
+      Net n344: 9 loads, 9 SLICEs
+      Net cnt_0__N_45: 10 loads, 10 SLICEs
+      Net u_clk_div.n177: 3 loads, 3 SLICEs
    Top 10 highest fanout non-clock nets:
-      Net VCC_net: 1 loads
+
+                                    Page 1
+
+
+
+
+
+Design Summary (cont)
+---------------------
+      Net u_display_s1.phase[1]: 14 loads
+      Net cnt_0__N_45: 12 loads
+      Net n344: 9 loads
+      Net n359: 9 loads
+      Net u_display_s1.cnt[2]: 9 loads
+      Net u_display_s1.cnt[3]: 9 loads
+      Net u_display_s1.n13: 9 loads
+      Net u_display_s1.n13_adj_63: 8 loads
+      Net u_display_s1.cnt[0]: 7 loads
+      Net u_display_s1.cnt[1]: 7 loads
 
 
 
@@ -61,13 +87,6 @@ Design Summary
    Number of warnings:  0
    Number of criticals: 0
    Number of errors:    0
-
-                                    Page 1
-
-
-
-
-
 
 Design Errors/Criticals/Warnings
 --------------------------------
@@ -108,14 +127,44 @@ IO (PIO) Attributes
 | CLK                 | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | LAT                 | OUTPUT    |           |       |       |           |
+
+                                    Page 2
+
+
+
+
+
+IO (PIO) Attributes (cont)
+--------------------------
 +---------------------+-----------+-----------+-------+-------+-----------+
 | OE                  | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 
+Removed logic
+-------------
+
+Block u_display_s1/i4_1_lut was optimized away.
+
+OSC Summary
+-----------
+
+OSC 1:                                 Pin/Node Value
+  OSC Instance Name:                            u_hfosc
+  Power UP:                            NODE     VCC_net
+  Enable Signal:                       NODE     VCC_net
+  OSC Output:                          NODE     int_osc
+  DIV Setting:                                  00
+
+ASIC Components
+---------------
+
+Instance Name: u_hfosc
+         Type: HFOSC
+
 Constraint Summary
 ------------------
 
-   Total number of constraints: 16
+   Total number of constraints: 17
    Total number of constraints dropped: 0
 
 Run Time and Memory Usage
@@ -123,12 +172,29 @@ Run Time and Memory Usage
 
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
-   Peak Memory Usage: 65 MB
-Checksum -- map: 99efbfc5aee39863fda1c87b77056c018efc9eb5
+   Peak Memory Usage: 66 MB
+Checksum -- map: e47f1a39e05ce62fa2728e36a905ee2b2db8b0a2
 
 
 
-                                    Page 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 3
 
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.

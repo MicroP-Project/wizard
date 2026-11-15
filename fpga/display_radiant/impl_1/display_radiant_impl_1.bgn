@@ -4,7 +4,7 @@ Copyright (c) 1995 AT&T Corp.   All rights reserved.
 Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2026 Lattice Semiconductor Corporation,  All rights reserved.
-Sun Nov 15 15:07:17 2026
+Sun Nov 15 15:20:43 2026
 
 
 Command: bitgen -w -gui -msgset C:/Users/jesli/Documents/GitHub/wizard/fpga/display_radiant/promote.xml -freq 0 display_radiant_impl_1.udb C:/Users/jesli/Documents/GitHub/wizard/fpga/display_radiant/impl_1/display_radiant_impl_1 
@@ -25,6 +25,6 @@ Saving bit stream in "C:/Users/jesli/Documents/GitHub/wizard/fpga/display_radian
 Bitstream generation complete!
 
 Total CPU Time: 0 secs 
-Total REAL Time: 3 secs 
-Peak Memory Usage: 116 MB
+Total REAL Time: 4 secs 
+Peak Memory Usage: 117 MB
 

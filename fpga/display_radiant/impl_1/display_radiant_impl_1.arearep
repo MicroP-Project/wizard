@@ -1,9 +1,35 @@
 ----------------------------------------------------------------------
 Report for cell display_top.TECH
-Register bits:  0 of 5280 (0.000%)
+Register bits:  29 of 5280 (0.549%)
 I/O cells:      15
                                   Cell usage:
                                cell     count   Res Usage(%)
+                               CCU2        13          100.0
+                            FD1P3XZ        29          100.0
+                         HSOSC_CORE         1          100.0
                                  IB         1          100.0
+                                INV         1          100.0
+                               LUT4        43          100.0
                                  OB        14          100.0
-                              TOTAL        15
+SUB MODULES
+                            clk_div         1
+                         display_s1         1
+                              TOTAL       104
+----------------------------------------------------------------------
+Report for cell display_s1.v1
+Instance Path : u_display_s1
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2         4           30.8
+                            FD1P3XZ         9           31.0
+                                INV         1          100.0
+                               LUT4        31           72.1
+                              TOTAL        45
+----------------------------------------------------------------------
+Report for cell clk_div.v1
+Instance Path : u_clk_div
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ         4           13.8
+                               LUT4         5           11.6
+                              TOTAL         9
