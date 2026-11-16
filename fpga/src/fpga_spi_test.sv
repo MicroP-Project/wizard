@@ -6,11 +6,11 @@
 //
 // Pins: sck <- PB3, sdi <- PB5 (MOSI), sdo -> PB4 (MISO, garbage), cs <- PA8, led -> any LED.
 
-module fpga_spi_test(input  logic sck,
-                     input  logic sdi,
-                     output logic sdo,
-                     input  logic cs,
-                     output logic led);
+module fpga_spi_test(input  logic sck, // P21
+                     input  logic sdi, // P19
+                     output logic sdo, // P11
+                     input  logic cs,  // P6
+                     output logic led);// P38
 
     localparam logic [15:0] CAST_PLUS_X = 16'h0001;
     localparam int          ONE_SECOND  = 48_000_000;  // HSOSC = 48 MHz
