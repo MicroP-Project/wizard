@@ -1,46 +1,45 @@
 ----------------------------------------------------------------------
 Report for cell display_top.TECH
-Register bits:  36 of 5280 (0.682%)
+Register bits:  20 of 5280 (0.379%)
 I/O cells:      15
                                   Cell usage:
                                cell     count   Res Usage(%)
-                               CCU2        17          100.0
-                            FD1P3XZ        36          100.0
+                               CCU2         8          100.0
+                            FD1P3XZ        20          100.0
                          HSOSC_CORE         1          100.0
                                  IB         1          100.0
                                 INV         1          100.0
                               IOL_B         1          100.0
-                               LUT4        46          100.0
+                               LUT4        40          100.0
                                  OB        14          100.0
 SUB MODULES
                             clk_div         1
                          display_s1         1
                       sync(WIDTH=1)         1
-                              TOTAL       120
-----------------------------------------------------------------------
-Report for cell sync(WIDTH=1).v1
-Instance Path : u_sync
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                            FD1P3XZ         1            2.8
-                              IOL_B         1          100.0
-                               LUT4         1            2.2
-                              TOTAL         3
+                              TOTAL        89
 ----------------------------------------------------------------------
 Report for cell display_s1.v1
 Instance Path : u_display_s1
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                FA2         8           47.1
-                            FD1P3XZ        15           41.7
+                                FA2         8          100.0
+                            FD1P3XZ        15           75.0
                                 INV         1          100.0
-                               LUT4        30           65.2
+                               LUT4        30           75.0
                               TOTAL        54
 ----------------------------------------------------------------------
 Report for cell clk_div.v1
 Instance Path : u_clk_div
                                   Cell usage:
                                cell     count   Res Usage(%)
-                            FD1P3XZ         4           11.1
-                               LUT4         5           10.9
+                            FD1P3XZ         4           20.0
+                               LUT4         5           12.5
                               TOTAL         9
+----------------------------------------------------------------------
+Report for cell sync(WIDTH=1).v1
+Instance Path : u_sync
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ         1            5.0
+                              IOL_B         1          100.0
+                              TOTAL         2
