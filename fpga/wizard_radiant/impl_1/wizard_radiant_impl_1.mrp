@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Mon Nov 16 16:48:56 2026
+Mapped on: Tue Nov 17 15:26:39 2026
 
 Design Information
 ------------------
@@ -24,8 +24,8 @@ Design Summary
 
    Number of slice registers:  80 out of  5280 (2%)
    Number of I/O registers:      3 out of   117 (3%)
-   Number of LUT4s:           159 out of  5280 (3%)
-      Number of logic LUT4s:              80
+   Number of LUT4s:           163 out of  5280 (3%)
+      Number of logic LUT4s:              84
       Number of inserted feedthru LUT4s:  35
       Number of ripple logic:             22 (44 LUT4s)
    Number of IO sites used:   20 out of 39 (51%)
@@ -52,14 +52,14 @@ Design Summary
    Number of Clocks:  4
       Net int_osc: 34 loads, 34 rising, 0 falling (Driver: Pin u_hfosc/CLKHF)
       Net cs_c: 16 loads, 16 rising, 0 falling (Driver: Port cs)
-      Net sck_c: 17 loads, 16 rising, 1 falling (Driver: Port sck)
       Net CLK_c: 15 loads, 0 rising, 15 falling (Driver: Pin
      u_clk_div.clk_out/Q)
+      Net sck_c: 17 loads, 16 rising, 1 falling (Driver: Port sck)
    Number of Clock Enables:  4
       Net VCC_net: 1 loads, 0 SLICEs
-      Net n488: 19 loads, 19 SLICEs
+      Net n543: 19 loads, 19 SLICEs
       Net sck_c_enable_1: 16 loads, 15 SLICEs
-      Net n557: 6 loads, 6 SLICEs
+      Net n606: 6 loads, 6 SLICEs
 
                                     Page 1
 
@@ -71,19 +71,19 @@ Design Summary (cont)
 ---------------------
    Number of LSRs:  3
       Net cnt_0__N_73: 35 loads, 35 SLICEs
-      Net n389: 6 loads, 6 SLICEs
-      Net u_clk_div.n320: 3 loads, 3 SLICEs
+      Net n433: 6 loads, 6 SLICEs
+      Net u_clk_div.n321: 3 loads, 3 SLICEs
    Top 10 highest fanout non-clock nets:
       Net cnt_0__N_73: 35 loads
       Net VCC_net: 29 loads
       Net n46: 22 loads
-      Net n488: 19 loads
+      Net n543: 19 loads
       Net sck_c_enable_1: 16 loads
-      Net u_display_s1.n29_adj_108: 15 loads
+      Net u_display_s1.n29_adj_111: 15 loads
       Net cnt[7]: 7 loads
       Net cnt[6]: 6 loads
-      Net n389: 6 loads
-      Net n557: 6 loads
+      Net E_c: 6 loads
+      Net n606: 6 loads
 
 
 
@@ -158,8 +158,8 @@ IO (PIO) Attributes (cont)
 Removed logic
 -------------
 
-Block u_display_s1/i4_1_lut was optimized away.
 Block u_spi/i10_1_lut was optimized away.
+Block u_display_s1/i4_1_lut was optimized away.
 
 OSC Summary
 -----------
@@ -174,14 +174,14 @@ OSC 1:                                 Pin/Node Value
 ASIC Components
 ---------------
 
-Instance Name: u_spi/shiftreg_i0_i0
-         Type: IOLOGIC
 Instance Name: u_spi/sdodelayed
          Type: IOLOGIC
-Instance Name: u_sync/n1[0]
+Instance Name: u_spi/shiftreg_i0_i0
          Type: IOLOGIC
 Instance Name: u_hfosc
          Type: HFOSC
+Instance Name: u_sync/n1[0]
+         Type: IOLOGIC
 
 Constraint Summary
 ------------------
@@ -204,7 +204,7 @@ Run Time and Memory Usage (cont)
 --------------------------------
    Total REAL Time: 0 secs
    Peak Memory Usage: 67 MB
-Checksum -- map: 2de7d9e82294ffcd997ba9f093eac8659a2f669f
+Checksum -- map: 9e6868ad39e0c6984aee52ab1b5c8d0e83460c0
 
 
 

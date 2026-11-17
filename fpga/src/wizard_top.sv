@@ -68,6 +68,7 @@ module wizard_top #(
     display_s1 u_display_s1 (
         .clk_shift(clk_shift),
         .nrst(nrst_sync),
+        .cast_active(show),
         .R1(R1), .G1(G1), .B1(B1),
         .R2(R2), .G2(G2), .B2(B2),
         .A(A), .B(B), .C(C), .D(D), .E(E),
@@ -105,8 +106,8 @@ module wizard_top #(
 
     assign show = (show_count != 0);
 
-    // OE is active low: force it high (blank) unless a +x cast is active
-    assign OE  = oe_display | ~show;
+	// Let display_s1 control OE continuously; show switches the row and color
+    assign OE  = oe_display;
     assign led = show;
-
+	
 endmodule

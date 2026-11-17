@@ -4,8 +4,8 @@ Report for cell wizard_top
                      Cell usage:
                                   cell	      count    Res Usage(%)
                                  IOLGC	       3.00        100.0
-                                  LUT4	        159        100.0
-                               LUTGATE	        115        100.0
+                                  LUT4	        163        100.0
+                               LUTGATE	        119        100.0
                                 LUTCCU	         44        100.0
                                  IOREG	          3        100.0
                                  IOBUF	         20        100.0
@@ -13,9 +13,18 @@ Report for cell wizard_top
 SUB MODULES
                                   cell	      count    LUT4 Usage(%)
                                clk_div	          1         3.1
-                            display_s1	          1        28.3
+                            display_s1	          1        30.1
                               fpga_spi	          1         0.0
                          sync(WIDTH=1)	          1         0.0
+---------------------------------------------------
+Report for cell display_s1
+   Instance path: wizard_top/u_display_s1
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         49        30.1
+                               LUTGATE	         33        27.7
+                                LUTCCU	         16        36.4
+                                PFUREG	         15        18.8
 ---------------------------------------------------
 Report for cell fpga_spi
    Instance path: wizard_top/u_spi
@@ -38,14 +47,5 @@ Report for cell clk_div
                      Cell usage:
                                   cell	      count    Res Usage(%)
                                   LUT4	          5         3.1
-                               LUTGATE	          5         4.3
+                               LUTGATE	          5         4.2
                                 PFUREG	          4         5.0
----------------------------------------------------
-Report for cell display_s1
-   Instance path: wizard_top/u_display_s1
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                  LUT4	         45        28.3
-                               LUTGATE	         29        25.2
-                                LUTCCU	         16        36.4
-                                PFUREG	         15        18.8
