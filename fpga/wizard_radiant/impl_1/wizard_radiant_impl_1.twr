@@ -1,6 +1,6 @@
 Lattice Timing Report -  Setup  and Hold, Version Radiant Software (64-bit) 2026.1.0.37.0
 
-Tue Nov 17 15:26:50 2026
+Tue Nov 17 15:38:30 2026
 
 Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
 Copyright (c) 1995 AT&T Corp.   All rights reserved.
@@ -122,8 +122,8 @@ Define a clock on a top level port or a generated clock on a clock divider pin a
             Listing 3 Net(s)            |        Source pin        
 -------------------------------------------------------------------
 cs_c                                    |          cs_pad.bb_inst/O
-sck_c                                   |         sck_pad.bb_inst/O
 CLK_c                                   |       u_clk_div/clk_out/Q
+sck_c                                   |         sck_pad.bb_inst/O
 -------------------------------------------------------------------
                                         |                          
 Number of clock nets without clock defi |                          

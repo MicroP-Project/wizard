@@ -1,5 +1,5 @@
 // Verilog netlist produced by program LSE :  version Radiant Software (64-bit) 2026.1.0.37.0
-// Netlist written on Tue Nov 17 15:26:35 2026
+// Netlist written on Tue Nov 17 15:38:10 2026
 // Source file index table: 
 // Object locations will have the form @<file_index>(<first_ line>[<left_column>],<last_line>[<right_column>])
 // file 0 "c:/users/jesli/documents/github/wizard/fpga/display_radiant/source/impl_1/clk_div.sv"
@@ -362,11 +362,11 @@ module wizard_top (input nrst_in, input sck, input sdi, output sdo,
     (* lut_function="(A+(B))" *) LUT4 i507_2_lut (.A(n137[18]), .B(n46), 
             .Z(n110));
     defparam i507_2_lut.INIT = "0xeeee";
-    (* LSE_LINE_FILE_ID=28, LSE_LCOL=16, LSE_RCOL=6, LSE_LLINE=68, LSE_RLINE=78 *) display_s1 u_display_s1 (cnt[9], 
-            G1_c, n29_adj_113, cnt[12], cnt[8], cnt[6], cnt[10], 
-            B1_c, cnt[13], cnt[14], cnt[4], E_c, cnt_0__N_73, cnt[3], 
-            nrst_sync, cnt[5], cnt[11], OE_c, cnt[7], n1206, R1_c, 
-            CLK_c, n40_adj_112);
+    (* LSE_LINE_FILE_ID=28, LSE_LCOL=16, LSE_RCOL=6, LSE_LLINE=68, LSE_RLINE=78 *) display_s1 u_display_s1 (cnt[12], 
+            n29_adj_113, cnt[7], cnt[6], cnt[10], cnt[13], cnt[9], 
+            cnt[14], n40_adj_112, cnt[3], CLK_c, cnt_0__N_73, cnt[4], 
+            cnt[5], R1_c, cnt[11], cnt[8], n1206, nrst_sync, OE_c, 
+            B1_c, E_c, G1_c);
     FD1P3XZ show_count___i4 (.D(n124), .SP(n543), .CK(int_osc), .SR(cnt_0__N_73), 
             .Q(show_count[4]));
     defparam show_count___i4.REGSET = "RESET";
@@ -431,7 +431,7 @@ module wizard_top (input nrst_in, input sck, input sdi, output sdo,
     defparam sub_12_add_2_add_5_25.INIT0 = "0xc33c";
     defparam sub_12_add_2_add_5_25.INIT1 = "0xc33c";
     (* LSE_LINE_FILE_ID=28, LSE_LCOL=24, LSE_RCOL=6, LSE_LLINE=82, LSE_RLINE=88 *) fpga_spi u_spi ({packet}, 
-            sck_c_enable_1, cs_c, sdo_c, sck_c, sdi_c);
+            cs_c, sdo_c, sck_c, sdi_c, sck_c_enable_1);
     FA2 sub_12_add_2_add_5_23 (.A0(GND_net), .B0(show_count[21]), .C0(VCC_net), 
         .D0(n902), .CI0(n902), .A1(GND_net), .B1(show_count[22]), .C1(VCC_net), 
         .D1(n1595), .CI1(n1595), .CO0(n1595), .CO1(n904), .S0(n137[21]), 
@@ -468,8 +468,8 @@ module wizard_top (input nrst_in, input sck, input sdi, output sdo,
             .TRIM1(GND_net), .TRIM0(GND_net), .CLKHF(int_osc));
     defparam u_hfosc.CLKHF_DIV = "0b00";
     defparam u_hfosc.FABRIC_TRIME = "DISABLE";
-    (* LSE_LINE_FILE_ID=28, LSE_LCOL=23, LSE_RCOL=6, LSE_LLINE=55, LSE_RLINE=59 *) \sync(WIDTH=1)  u_sync (nrst_in_c, 
-            nrst_sync, int_osc);
+    (* LSE_LINE_FILE_ID=28, LSE_LCOL=23, LSE_RCOL=6, LSE_LLINE=55, LSE_RLINE=59 *) \sync(WIDTH=1)  u_sync (int_osc, 
+            nrst_sync, nrst_in_c);
     FA2 sub_12_add_2_add_5_19 (.A0(GND_net), .B0(show_count[17]), .C0(VCC_net), 
         .D0(n898), .CI0(n898), .A1(GND_net), .B1(show_count[18]), .C1(VCC_net), 
         .D1(n1589), .CI1(n1589), .CO0(n1589), .CO1(n900), .S0(n137[17]), 
@@ -486,7 +486,7 @@ module wizard_top (input nrst_in, input sck, input sdi, output sdo,
             .Z(n125));
     defparam i517_2_lut.INIT = "0xeeee";
     (* LSE_LINE_FILE_ID=28, LSE_LCOL=29, LSE_RCOL=6, LSE_LLINE=61, LSE_RLINE=65 *) clk_div u_clk_div (int_osc, 
-            CLK_c, cnt_0__N_73, nrst_sync);
+            cnt_0__N_73, CLK_c, nrst_sync);
     (* lut_function="(A+(B))" *) LUT4 i518_2_lut (.A(n137[2]), .B(n46), 
             .Z(n126));
     defparam i518_2_lut.INIT = "0xeeee";
@@ -503,25 +503,26 @@ endmodule
 // Verilog Description of module display_s1
 //
 
-module display_s1 (output \cnt[9] , output G1_c, output n29, output \cnt[12] , 
-            output \cnt[8] , output \cnt[6] , output \cnt[10] , output B1_c, 
-            output \cnt[13] , output \cnt[14] , output \cnt[4] , input E_c, 
-            output cnt_0__N_73, output \cnt[3] , input nrst_sync, output \cnt[5] , 
-            output \cnt[11] , output OE_c, output \cnt[7] , input n1206, 
-            output R1_c, input CLK_c, output n40);
+module display_s1 (output \cnt[12] , output n29, output \cnt[7] , output \cnt[6] , 
+            output \cnt[10] , output \cnt[13] , output \cnt[9] , output \cnt[14] , 
+            output n40, output \cnt[3] , input CLK_c, output cnt_0__N_73, 
+            output \cnt[4] , output \cnt[5] , output R1_c, output \cnt[11] , 
+            output \cnt[8] , input n1206, input nrst_sync, output OE_c, 
+            output B1_c, input E_c, output G1_c);
     
     wire [14:0]cnt;
     (* is_clock=1 *) wire CLK_c_derived_15;
     
     wire GND_net, VCC_net;
-    wire [14:0]n50;
-    
-    wire n1616, n29_adj_111, n868;
     wire [14:0]cnt_14__N_30;
     
-    wire n1113, n1216, n1619, n878, n744, n1610, n1114, n1598, 
-        n866, n1604, n870, n1601, n10, n876, n1607, n872, n874, 
-        n520, n499, n1101, n6, n1613, n422, n1208;
+    wire n520;
+    wire [14:0]n50;
+    
+    wire n29_adj_111, n1613, n422, n878, n866, n1619, n874, n6, 
+        n1604, n1598, n868, n499, n870, n1113, n1114, n1601, 
+        n10, n876, n1616, n1607, n744, n872, n1216, n1610, n1208, 
+        n1101;
     
     (* lut_function="(A (B))" *) LUT4 i449_2_lut (.A(n50[14]), .B(n29_adj_111), 
             .Z(cnt_14__N_30[14]));
@@ -735,11 +736,11 @@ endmodule
 // Verilog Description of module fpga_spi
 //
 
-module fpga_spi (output [15:0]packet, input sck_c_enable_1, input cs_c, 
-            output sdo_c, input sck_c, input sdi_c);
+module fpga_spi (output [15:0]packet, input cs_c, output sdo_c, input sck_c, 
+            input sdi_c, input sck_c_enable_1);
     
-    (* is_clock=1, is_inv_clock=1 *) wire sck_c__inv;
     wire [15:0]shiftreg;
+    (* is_clock=1, is_inv_clock=1 *) wire sck_c__inv;
     (* is_clock=1 *) wire cs_c;
     (* is_clock=1 *) wire sck_c;
     
@@ -889,7 +890,7 @@ endmodule
 // Verilog Description of module \sync(WIDTH=1) 
 //
 
-module \sync(WIDTH=1)  (input nrst_in_c, output nrst_sync, input int_osc);
+module \sync(WIDTH=1)  (input int_osc, output nrst_sync, input nrst_in_c);
     
     wire [0:0]n1;
     (* is_clock=1 *) wire int_osc;
@@ -914,10 +915,10 @@ endmodule
 // Verilog Description of module clk_div
 //
 
-module clk_div (input int_osc, output CLK_c, input cnt_0__N_73, input nrst_sync);
+module clk_div (input int_osc, input cnt_0__N_73, output CLK_c, input nrst_sync);
     
-    (* is_clock=1 *) wire int_osc;
     wire [2:0]count;
+    (* is_clock=1 *) wire int_osc;
     wire [2:0]n17;
     
     wire n321, n15, VCC_net;
