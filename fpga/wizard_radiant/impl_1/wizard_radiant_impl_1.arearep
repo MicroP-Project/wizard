@@ -1,0 +1,55 @@
+----------------------------------------------------------------------
+Report for cell wizard_top.TECH
+Register bits:  80 of 5280 (1.515%)
+I/O cells:      20
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               CCU2        22          100.0
+                            FD1P3XZ        80          100.0
+                         HSOSC_CORE         1          100.0
+                                 IB         4          100.0
+                                INV         2          100.0
+                              IOL_B         3          100.0
+                               LUT4        78          100.0
+                                 OB        16          100.0
+SUB MODULES
+                            clk_div         1
+                         display_s1         1
+                           fpga_spi         1
+                      sync(WIDTH=1)         1
+                              TOTAL       210
+----------------------------------------------------------------------
+Report for cell fpga_spi.v1
+Instance Path : u_spi
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ        31           38.8
+                                INV         1           50.0
+                              IOL_B         2           66.7
+                              TOTAL        34
+----------------------------------------------------------------------
+Report for cell sync(WIDTH=1).v1
+Instance Path : u_sync
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ         1            1.2
+                              IOL_B         1           33.3
+                              TOTAL         2
+----------------------------------------------------------------------
+Report for cell clk_div.v1
+Instance Path : u_clk_div
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ         4            5.0
+                               LUT4         5            6.4
+                              TOTAL         9
+----------------------------------------------------------------------
+Report for cell display_s1.v1
+Instance Path : u_display_s1
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2         8           36.4
+                            FD1P3XZ        15           18.8
+                                INV         1           50.0
+                               LUT4        29           37.2
+                              TOTAL        53
