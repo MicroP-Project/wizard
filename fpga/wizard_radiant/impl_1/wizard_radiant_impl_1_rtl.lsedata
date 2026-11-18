@@ -2,15 +2,16 @@
 
 <clocks>
     <clockitem name = "u_spi/n56"  type = "net" />
-    <clockitem name = "u_display_s1/n2"  type = "net" />
+    <clockitem name = "clk_shift"  type = "net" />
     <clockitem name = "sck"  type = "port" />
-    <clockitem name = "int_osc"  type = "net" />
     <clockitem name = "cs"  type = "port" />
+    <clockitem name = "int_osc"  type = "net" />
+    <clockitem name = "u_display_s1/n2"  type = "net" />
 </clocks>
 
 <!--
     //=============================================================
-    //  Number of Clocks processed: 5
+    //  Number of Clocks processed: 6
     //
     //  If a clock cannot be found in the top level pins section,
     //  that means it is an internal clock.

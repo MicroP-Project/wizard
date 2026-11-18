@@ -4,35 +4,18 @@ Report for cell wizard_top
                      Cell usage:
                                   cell	      count    Res Usage(%)
                                  IOLGC	       3.00        100.0
-                                  LUT4	        163        100.0
-                               LUTGATE	        119        100.0
+                                  LUT4	        169        100.0
+                               LUTGATE	        125        100.0
                                 LUTCCU	         44        100.0
                                  IOREG	          3        100.0
                                  IOBUF	         20        100.0
                                 PFUREG	         80        100.0
 SUB MODULES
                                   cell	      count    LUT4 Usage(%)
-                               clk_div	          1         3.1
-                            display_s1	          1        30.1
+                               clk_div	          1         3.0
+                            display_s1	          1        33.1
                               fpga_spi	          1         0.0
                          sync(WIDTH=1)	          1         0.0
----------------------------------------------------
-Report for cell display_s1
-   Instance path: wizard_top/u_display_s1
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                  LUT4	         49        30.1
-                               LUTGATE	         33        27.7
-                                LUTCCU	         16        36.4
-                                PFUREG	         15        18.8
----------------------------------------------------
-Report for cell fpga_spi
-   Instance path: wizard_top/u_spi
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                 IOLGC	       2.00        66.7
-                                 IOREG	          2        66.7
-                                PFUREG	         31        38.8
 ---------------------------------------------------
 Report for cell sync(WIDTH=1)
    Instance path: wizard_top/u_sync
@@ -42,10 +25,37 @@ Report for cell sync(WIDTH=1)
                                  IOREG	          1        33.3
                                 PFUREG	          1         1.2
 ---------------------------------------------------
+Report for cell display_s1
+   Instance path: wizard_top/u_display_s1
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         56        33.1
+                               LUTGATE	         40        32.0
+                                LUTCCU	         16        36.4
+                                PFUREG	         15        18.8
+SUB MODULES
+                                  cell	      count    LUT4 Usage(%)
+                        spram_row_test	          1         0.6
+---------------------------------------------------
+Report for cell spram_row_test
+   Instance path: wizard_top/u_display_s1/u_spram_row
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	          1         0.6
+                               LUTGATE	          1         0.8
+---------------------------------------------------
+Report for cell fpga_spi
+   Instance path: wizard_top/u_spi
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                 IOLGC	       2.00        66.7
+                                 IOREG	          2        66.7
+                                PFUREG	         31        38.8
+---------------------------------------------------
 Report for cell clk_div
    Instance path: wizard_top/u_clk_div
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	          5         3.1
-                               LUTGATE	          5         4.2
+                                  LUT4	          5         3.0
+                               LUTGATE	          5         4.0
                                 PFUREG	          4         5.0

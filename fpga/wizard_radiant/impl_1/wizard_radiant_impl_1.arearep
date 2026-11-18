@@ -10,14 +10,24 @@ I/O cells:      20
                                  IB         4          100.0
                                 INV         2          100.0
                               IOL_B         3          100.0
-                               LUT4        82          100.0
+                               LUT4        88          100.0
                                  OB        16          100.0
+                              VFB_B         1          100.0
 SUB MODULES
                             clk_div         1
                          display_s1         1
                            fpga_spi         1
+                     spram_row_test         1
                       sync(WIDTH=1)         1
-                              TOTAL       214
+                              TOTAL       222
+----------------------------------------------------------------------
+Report for cell sync(WIDTH=1).v1
+Instance Path : u_sync
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ         1            1.2
+                              IOL_B         1           33.3
+                              TOTAL         2
 ----------------------------------------------------------------------
 Report for cell display_s1.v1
 Instance Path : u_display_s1
@@ -26,8 +36,19 @@ Instance Path : u_display_s1
                                 FA2         8           36.4
                             FD1P3XZ        15           18.8
                                 INV         1           50.0
-                               LUT4        34           41.5
-                              TOTAL        58
+                               LUT4        41           46.6
+                              VFB_B         1          100.0
+SUB MODULES
+                     spram_row_test         1
+                              TOTAL        67
+----------------------------------------------------------------------
+Report for cell spram_row_test.v1
+Instance Path : u_display_s1.u_spram_row
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               LUT4         1            1.1
+                              VFB_B         1          100.0
+                              TOTAL         2
 ----------------------------------------------------------------------
 Report for cell fpga_spi.v1
 Instance Path : u_spi
@@ -38,18 +59,10 @@ Instance Path : u_spi
                               IOL_B         2           66.7
                               TOTAL        34
 ----------------------------------------------------------------------
-Report for cell sync(WIDTH=1).v1
-Instance Path : u_sync
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                            FD1P3XZ         1            1.2
-                              IOL_B         1           33.3
-                              TOTAL         2
-----------------------------------------------------------------------
 Report for cell clk_div.v1
 Instance Path : u_clk_div
                                   Cell usage:
                                cell     count   Res Usage(%)
                             FD1P3XZ         4            5.0
-                               LUT4         5            6.1
+                               LUT4         5            5.7
                               TOTAL         9

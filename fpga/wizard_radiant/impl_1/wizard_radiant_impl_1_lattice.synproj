@@ -47,6 +47,7 @@
 -sver "../../display_radiant/source/impl_1/display_s1.sv"
 -sver "../../display_radiant/source/impl_1/sync.sv"
 -sver "../../src/wizard_top.sv"
+-sver "../../src/spram_row_test.sv"
 -path ".."
 -top wizard_top
 # Output Configuration
