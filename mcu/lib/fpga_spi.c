@@ -11,11 +11,19 @@
 // Chip select helpers
 ///////////////////////////////////////////////////////////////////////////////
 
-static inline void fpgaSelect(void)   { digitalWrite(FPGA_CS_PIN, PIO_LOW);  }
-static inline void fpgaDeselect(void) {
-    // Make sure the last bit has fully shifted out before releasing CS,
-    // otherwise the FPGA latches the packet one bit short.
-    while (SPI3->SR & SPI_SR_BSY);
+// Start a packet: pull CS low so the FPGA starts shifting in bits.
+void fpgaSelect(void) {
+    digitalWrite(FPGA_CS_PIN, PIO_LOW);
+}
+
+// End a packet: wait for the last bit to finish, then pull CS high.
+// The FPGA saves the packet on this rising edge of CS.
+void fpgaDeselect(void) {
+    // BSY = 1 while SPI3 is still sending. If CS went high before the last
+    // bit finished, the FPGA would save the packet one bit short.
+    while ((SPI3->SR & SPI_SR_BSY) != 0) {
+        // do nothing, just wait
+    }
     digitalWrite(FPGA_CS_PIN, PIO_HIGH);
 }
 
@@ -33,19 +41,14 @@ void initFPGA(void) {
 // Sending
 ///////////////////////////////////////////////////////////////////////////////
 
-void fpgaSendPacket(uint8_t byte0, uint8_t byte1) {
+void fpgaSendPacket(uint8_t packet) {
     fpgaSelect();
-    spi3SendReceive(byte0);   // received byte (FPGA's garbage sdo) is ignored
-    spi3SendReceive(byte1);
+    spi3SendReceive(packet);   // received byte (FPGA's garbage sdo) is ignored
     fpgaDeselect();
 }
 
-uint8_t fpgaPackStatus(uint8_t state, uint8_t direction, uint8_t lives) {
-    return (uint8_t)(((state     & FPGA_STATE_MSK) << FPGA_STATE_SHIFT) |
-                     ((direction & FPGA_DIR_MSK)   << FPGA_DIR_SHIFT)   |
-                     ((lives     & FPGA_LIVES_MSK) << FPGA_LIVES_SHIFT));
-}
-
-void fpgaSendState(uint8_t state, uint8_t direction, uint8_t lives, uint8_t score) {
-    fpgaSendPacket(fpgaPackStatus(state, direction, lives), score);
+void fpgaSendRound(uint8_t next_spell, uint8_t result) {
+    uint8_t spell_bits = (next_spell & 0b111) << 3;   // bits 5-3
+    uint8_t flag_bits  = (result     & 0b111);        // bits 2-0
+    fpgaSendPacket(spell_bits | flag_bits);
 }

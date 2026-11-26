@@ -3,7 +3,7 @@
 //
 // Protocol (MCU side, see STM32L432KC_SPI3.h):
 //   pull cs low
-//   apply 16 sclks to shift in the packet, starting with packet[15] (MSB first)
+//   apply 8 sclks to shift in the packet, starting with packet[7] (MSB first)
 //   wait for the last bit to finish, then raise cs
 //   the packet is latched into `packet` on the rising edge of cs
 //
@@ -14,7 +14,7 @@
 // sdo is "garbage": it just echoes back the bits received, delayed by N. The MCU ignores
 // it, but it is handy for a loopback test on a logic analyzer.
 
-module fpga_spi #(parameter N = 16)       // packet width in bits (2 bytes)
+module fpga_spi #(parameter N = 8)        // packet width in bits (1 byte)
               (input  logic         sck,
                input  logic         sdi,  // MOSI from MCU
                output logic         sdo,  // MISO to MCU (garbage)

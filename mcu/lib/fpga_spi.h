@@ -4,7 +4,7 @@
 // Nov 14, 2026
 // Driver for sending game state to the FPGA over SPI3.
 // Built on top of STM32L432KC_SPI3 (SPI3: SCK=PB3, MISO=PB4, MOSI=PB5, CS=PA8).
-// FPGA side: fpga/src/fpga_spi.sv (16-bit packet, latched on CS rising edge).
+// FPGA side: fpga/src/fpga_spi.sv (8-bit packet, latched on CS rising edge).
 
 #ifndef FPGA_SPI_H
 #define FPGA_SPI_H
@@ -31,22 +31,25 @@
 #define FPGA_SPI_BR   0b100
 
 ///////////////////////////////////////////////////////////////////////////////
-// Packet format (16 bits, sent MSB first -> lands in packet[15:0] on the FPGA)
+// Packet format (1 byte, sent MSB first -> lands in packet[7:0] on the FPGA)
 //
-//   byte 0 = packet[15:8]:  state[7:6] | direction[5:3] | lives[2:0]
-//   byte 1 = packet[7:0]:   score (0-255)
+//   bit:   7  6  |  5  4  3   |    2     |   1   |   0
+//         unused | next spell | time out | wrong | right
 //
-// FPGA decode:  state = packet[15:14], direction = packet[13:11],
-//               lives = packet[10:8],  score     = packet[7:0]
+//   next spell: the direction the player must cast next (shown by the FPGA)
+//   right:      1 = the player cast the correct spell in time  (FPGA: score + 1)
+//   wrong:      1 = the player cast the wrong spell            (FPGA: lives - 1)
+//   time out:   1 = the player ran out of time                 (FPGA: lives - 1)
+//
+// The MCU sends one packet per round: the result of the round that just ended
+// plus the spell for the next round. For the very first round, send the first
+// spell with no flags set. Lives, score and game over are handled on the FPGA.
+//
+// FPGA decode:  next_spell = packet[5:3], timeout = packet[2],
+//               wrong      = packet[1],   right   = packet[0]
 ///////////////////////////////////////////////////////////////////////////////
 
-// state (2 bits)
-#define FPGA_STATE_IDLE      0  // title / waiting for button
-#define FPGA_STATE_PLAYING   1  // show the spell direction to cast
-#define FPGA_STATE_HIT       2  // correct direction cast
-#define FPGA_STATE_GAMEOVER  3
-
-// direction (3 bits) -- same numbering as user_input in main.c
+// spell directions (3 bits) -- same numbering as user_input in main.c
 #define FPGA_DIR_NONE  0
 #define FPGA_DIR_POS_X 1
 #define FPGA_DIR_NEG_X 2
@@ -55,12 +58,11 @@
 #define FPGA_DIR_POS_Z 5
 #define FPGA_DIR_NEG_Z 6
 
-#define FPGA_STATE_SHIFT 6
-#define FPGA_STATE_MSK   0x03
-#define FPGA_DIR_SHIFT   3
-#define FPGA_DIR_MSK     0x07
-#define FPGA_LIVES_SHIFT 0
-#define FPGA_LIVES_MSK   0x07   // max 7 lives
+// result flags (one bit each)
+#define FPGA_FLAG_NONE    0b000   // no result yet (first round)
+#define FPGA_FLAG_RIGHT   0b001   // bit 0
+#define FPGA_FLAG_WRONG   0b010   // bit 1
+#define FPGA_FLAG_TIMEOUT 0b100   // bit 2
 
 ///////////////////////////////////////////////////////////////////////////////
 // Function prototypes
@@ -70,15 +72,14 @@
  * Call configureClock() first. */
 void    initFPGA(void);
 
-/* Sends one raw 2-byte packet as a single CS-framed transaction.
+/* Sends one raw 1-byte packet as a single CS-framed transaction.
  * The FPGA latches it when CS goes back high. */
-void    fpgaSendPacket(uint8_t byte0, uint8_t byte1);
+void    fpgaSendPacket(uint8_t packet);
 
-/* Packs the game state into byte 0 (see packet format above). Values are
- * masked to their field widths. */
-uint8_t fpgaPackStatus(uint8_t state, uint8_t direction, uint8_t lives);
-
-/* Packs and sends the whole game state in one call. */
-void    fpgaSendState(uint8_t state, uint8_t direction, uint8_t lives, uint8_t score);
+/* Builds the packet from the next spell and a result flag, then sends it.
+ *    -- next_spell: FPGA_DIR_POS_X ... FPGA_DIR_NEG_Z
+ *    -- result:     FPGA_FLAG_NONE, FPGA_FLAG_RIGHT, FPGA_FLAG_WRONG or FPGA_FLAG_TIMEOUT
+ * Example: fpgaSendRound(FPGA_DIR_NEG_Y, FPGA_FLAG_RIGHT); */
+void    fpgaSendRound(uint8_t next_spell, uint8_t result);
 
 #endif
