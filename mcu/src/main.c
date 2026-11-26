@@ -15,6 +15,8 @@ int _write(int file, char *ptr, int len) {
   return len;
 }
 
+volatile int time_up;
+
 int main(void) {
     configureFlash();
     configureClock();
@@ -29,8 +31,22 @@ int main(void) {
     initAccel(); // assumes 80 Mhz, which is how system clock is configured in RCC
     /*Enables GPIOB, initializes SPI1 in Mode 3 at 2.5 MHz, verifies the sensor responds with 0x33 on WHO_AM_I, and configures the LIS3DH for 100 Hz output, X/Y/Z enabled, 12-bit high-resolution mode, $\pm 2g$ range, and Block Data Update (returns 1 on success, 0 on failure). */
     
-    volatile int en;
-    volatile int debounce_en;
+    RCC->APB1ENR1 |= (1 << 0); // TIM2EN
+    initTIM(TIM2);
+
+    // Enable interrupt for TIM2 
+    NVIC->ISER[0] |= (1 << 28);
+
+    TIM2->ARR = 20000;// Set timer max count (2s at 10 kHz)
+    TIM2->EGR |= 1;     // Force update
+    TIM2->SR &= ~(0x1); // Clear UIF
+    TIM2->DIER |= TIM_DIER_UIE;
+
+    // enable interrupt globally
+    __enable_irq();
+
+    volatile int en = 0;
+    volatile int debounce_en = 0;
 
     int user_input;
     while (1){
@@ -100,13 +116,29 @@ int main(void) {
             }
             
         }
-      
+        
+        if(en){
+            // take in the user input and check whether the input match the required spell
+            
+            
+            
+        }
 
         // wait for button to be released
         while(en){
             en = digitalRead(BUTTON_PIN);
         }
 
+        if (time_up){
 
+        }
+    }
+}
+
+
+void TIM2_IRQHandler(void){
+    if (TIM2->SR & TIM_SR_UIF) {      // was it the overflow?
+        TIM2->SR &= ~TIM_SR_UIF;
+        time_up = 1;
     }
 }

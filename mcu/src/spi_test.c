@@ -4,14 +4,14 @@
 // Nov 14, 2026
 // Test for the MCU -> FPGA SPI3 link.
 // Hold the button and swing the wand: when a +x cast (user_input == 1) is detected,
-// send packet 0x0001 to the FPGA. fpga/src/fpga_spi_test.sv lights an LED for 1 s.
+// send a packet with the "right" flag set. fpga/src/fpga_spi_test.sv lights an LED for 1 s.
 //
 // This file has its own main(): exclude main.c from the Segger build while testing
 // (or exclude this file when building the real game).
 
 #include <stdio.h>
 #include "main.h"        // clock, GPIO, accelerometer, BUTTON_PIN, THRESH_X_Y
-#include "fpga_spi.h"    // initFPGA(), fpgaSendPacket()
+#include "fpga_spi.h"    // initFPGA(), fpgaSendRound()
 
 // Redirect printf to the debugger's SWO/ITM console.
 // NOTE: SWO is on PB3, which is now SPI3 SCK, so prints may not show up after initFPGA().
@@ -64,7 +64,7 @@ int main(void) {
         }
 
         if (user_input == 1) {
-            fpgaSendPacket(0x00, 0x01);   // packet = 16'h0001 -> FPGA LED on for 1 s
+            fpgaSendRound(FPGA_DIR_NONE, FPGA_FLAG_RIGHT);   // packet = 0x01 -> FPGA LED on for 1 s
         }
         printf("user_input: %d\n", user_input);
 
