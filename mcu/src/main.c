@@ -31,6 +31,8 @@ int main(void) {
     initAccel(); // assumes 80 Mhz, which is how system clock is configured in RCC
     /*Enables GPIOB, initializes SPI1 in Mode 3 at 2.5 MHz, verifies the sensor responds with 0x33 on WHO_AM_I, and configures the LIS3DH for 100 Hz output, X/Y/Z enabled, 12-bit high-resolution mode, $\pm 2g$ range, and Block Data Update (returns 1 on success, 0 on failure). */
     
+    initTRNG();
+
     RCC->APB1ENR1 |= (1 << 0); // TIM2EN
     initTIM(TIM2);
 
@@ -46,12 +48,9 @@ int main(void) {
     __enable_irq();
 
 
-  // TODO: generating next move
-
-
     volatile int en = 0;
     volatile int debounce_en = 0;
-    volatile int required_spell = 0;
+    volatile int required_spell = nextSpellGenerator(); // generating next move 1-4
 
     int valid_input = 0;
     int user_input;
@@ -87,44 +86,44 @@ int main(void) {
             //printf("y: %d \n", y_only);
             //printf("z: %d \n", z_only);
 
-            // 1 -> +x
-            // 2 -> -x
-            // 3 -> +y
-            // 4 -> -y
-            // 5 -> +z
-            // 6 -> -z
+            // 5 -> +x
+            // 6 -> -x
+            // 1 -> +y
+            // 2 -> -y
+            // 3 -> +z
+            // 4 -> -z
             //if ((x_only > THRESH_X_Y) & ((x_only * x_only + y_only * y_only + z_only * z_only) > 2000000)){
-            //    user_input = 1; // x direction
+            //    user_input = 5; // x direction
             //    printf("user_input: %d \n", user_input);
             //    // SPI write to the FPGA with the specific value
             //    break;
             //    }
             //else if ((x_only < -THRESH_X_Y) & ((x_only * x_only + y_only * y_only + z_only * z_only) > 2000000)){
-            //    user_input = 2;
+            //    user_input = 6;
             //    printf("user_input: %d \n", user_input);
             //    break;
             //}
             //else 
             if ((y_only > THRESH_X_Y) & ((x_only * x_only + y_only * y_only + z_only * z_only) > 2000000)){
-                user_input = 3;
+                user_input = 1;
                 valid_input = 1;
                 printf("user_input: %d \n", user_input);
                 break;
             }
             else if ((y_only < -THRESH_X_Y) & ((x_only * x_only + y_only * y_only + z_only * z_only) > 2000000)){
-                user_input = 4;
+                user_input = 2;
                 valid_input = 1;
                 printf("user_input: %d \n", user_input);
                 break;
             }
             else if (z_only > THRESH_Z_UP){
-                user_input = 5;
+                user_input = 3;
                 valid_input = 1;
                 printf("user_input: %d \n", user_input);
                 break;
             }
             else if (z_only < -THRESH_Z_DOWN){
-                user_input = 6;
+                user_input = 4;
                 valid_input = 1;
                 printf("user_input: %d \n", user_input);
                 break;
@@ -140,6 +139,7 @@ int main(void) {
             // take in the user input and check whether the input match the required spell
           if (user_input == required_spell){
             // take next spell
+            required_spell = nextSpellGenerator(); // generating next move 1 to 4
             // spiwrite (correct, wrong, next spell, time up)
           } else {
             // spiwrite (correct, wrong, next spell, time up = 0)
@@ -158,15 +158,16 @@ int main(void) {
         }
 
         if (time_up){
-
+            required_spell = nextSpellGenerator(); // generating next move
+            // spiwrite (correct, wrong, next spell, time up)
         }
     }
 }
 
-/*
+
 void TIM2_IRQHandler(void){
     if (TIM2->SR & TIM_SR_UIF) {      // was it the overflow?
         TIM2->SR &= ~TIM_SR_UIF;
         time_up = 1;
     }
-} */
+} 
