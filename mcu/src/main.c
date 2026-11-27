@@ -45,12 +45,20 @@ int main(void) {
     // enable interrupt globally
     __enable_irq();
 
+
+  // TODO: generating next move
+
+
     volatile int en = 0;
     volatile int debounce_en = 0;
+    volatile int required_spell = 0;
 
+    int valid_input = 0;
     int user_input;
+    
     while (1){
-        // generating next move
+
+
         debounce_en = 0;
         if (digitalRead(BUTTON_PIN)){
             for (int i = 0; i < 10000; i++) {
@@ -75,50 +83,67 @@ int main(void) {
 
             // test for x values: printf("x: %d \n", x_only);
 
+            //printf("x: %d \n", x_only);
+            //printf("y: %d \n", y_only);
+            //printf("z: %d \n", z_only);
+
             // 1 -> +x
             // 2 -> -x
             // 3 -> +y
             // 4 -> -y
             // 5 -> +z
             // 6 -> -z
-            if (x_only > THRESH_X_Y){
-                user_input = 1; // x direction
-                printf("user_input: %d \n", user_input);
-                // SPI write to the FPGA with the specific value
-                break;
-                }
-            else if (x_only < -THRESH_X_Y){
-                user_input = 2;
-                printf("user_input: %d \n", user_input);
-                break;
-            }
-            else if (y_only > THRESH_X_Y){
+            //if ((x_only > THRESH_X_Y) & ((x_only * x_only + y_only * y_only + z_only * z_only) > 2000000)){
+            //    user_input = 1; // x direction
+            //    printf("user_input: %d \n", user_input);
+            //    // SPI write to the FPGA with the specific value
+            //    break;
+            //    }
+            //else if ((x_only < -THRESH_X_Y) & ((x_only * x_only + y_only * y_only + z_only * z_only) > 2000000)){
+            //    user_input = 2;
+            //    printf("user_input: %d \n", user_input);
+            //    break;
+            //}
+            //else 
+            if ((y_only > THRESH_X_Y) & ((x_only * x_only + y_only * y_only + z_only * z_only) > 2000000)){
                 user_input = 3;
+                valid_input = 1;
                 printf("user_input: %d \n", user_input);
                 break;
             }
-            else if (y_only < -THRESH_X_Y){
+            else if ((y_only < -THRESH_X_Y) & ((x_only * x_only + y_only * y_only + z_only * z_only) > 2000000)){
                 user_input = 4;
+                valid_input = 1;
                 printf("user_input: %d \n", user_input);
                 break;
             }
             else if (z_only > THRESH_Z_UP){
                 user_input = 5;
+                valid_input = 1;
                 printf("user_input: %d \n", user_input);
                 break;
             }
             else if (z_only < -THRESH_Z_DOWN){
                 user_input = 6;
+                valid_input = 1;
                 printf("user_input: %d \n", user_input);
                 break;
             }else{
                 user_input = 0;
             }
             
+
         }
         
-        if(en){
+        if(valid_input){
+          valid_input = 0;
             // take in the user input and check whether the input match the required spell
+          if (user_input == required_spell){
+            // take next spell
+            // spiwrite (correct, wrong, next spell, time up)
+          } else {
+            // spiwrite (correct, wrong, next spell, time up = 0)
+          }
             
             
             
@@ -127,6 +152,9 @@ int main(void) {
         // wait for button to be released
         while(en){
             en = digitalRead(BUTTON_PIN);
+            if (time_up){
+              break;
+            }
         }
 
         if (time_up){
@@ -135,10 +163,10 @@ int main(void) {
     }
 }
 
-
+/*
 void TIM2_IRQHandler(void){
     if (TIM2->SR & TIM_SR_UIF) {      // was it the overflow?
         TIM2->SR &= ~TIM_SR_UIF;
         time_up = 1;
     }
-}
+} */
