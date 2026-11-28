@@ -20,5 +20,10 @@
 #define THRESH_Z_UP 0x600
 #define THRESH_Z_DOWN 0x0
 
+// Round timeout (TIM2 ticks at 10 kHz, set by initTIM's prescaler)
+#define TIMEOUT_MS    5000                    // time per round in ms -- change this to adjust
+#define TIM2_TICK_HZ  10000                   // TIM2 counter rate after prescaler
+#define TIMEOUT_ARR   ((TIMEOUT_MS * (TIM2_TICK_HZ / 1000)) - 1)   // 5000 ms -> 49999
+
 
 #endif // MAIN_H

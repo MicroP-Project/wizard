@@ -40,7 +40,7 @@ int main(void) {
     // Enable interrupt for TIM2 
     NVIC->ISER[0] |= (1 << 28);
 
-    TIM2->ARR = 20000;// Set timer max count (2s at 10 kHz)
+    TIM2->ARR = TIMEOUT_ARR; // round timeout = TIMEOUT_MS (set in main.h)
     TIM2->EGR |= 1;     // Force update
     TIM2->SR &= ~(0x1); // Clear UIF
     TIM2->DIER |= TIM_DIER_UIE;
