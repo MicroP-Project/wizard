@@ -31,6 +31,7 @@ int main(void) {
     initAccel(); // assumes 80 Mhz, which is how system clock is configured in RCC
     /*Enables GPIOB, initializes SPI1 in Mode 3 at 2.5 MHz, verifies the sensor responds with 0x33 on WHO_AM_I, and configures the LIS3DH for 100 Hz output, X/Y/Z enabled, 12-bit high-resolution mode, $\pm 2g$ range, and Block Data Update (returns 1 on success, 0 on failure). */
     
+    initFPGA();
     initTRNG();
 
     RCC->APB1ENR1 |= (1 << 0); // TIM2EN
@@ -54,6 +55,10 @@ int main(void) {
 
     int valid_input = 0;
     int user_input;
+
+    fpgaSendRound(required_spell, FPGA_FLAG_NONE);
+    TIM2->CNT = 0;
+    time_up = 0;
     
     while (1){
 
@@ -130,7 +135,9 @@ int main(void) {
             }else{
                 user_input = 0;
             }
-            
+            if(time_up){
+                break;
+            }
 
         }
         
@@ -140,9 +147,14 @@ int main(void) {
           if (user_input == required_spell){
             // take next spell
             required_spell = nextSpellGenerator(); // generating next move 1 to 4
-            // spiwrite (correct, wrong, next spell, time up)
+            fpgaSendRound(required_spell, FPGA_FLAG_RIGHT);
+            TIM2->CNT = 0; // restart timer
+            time_up = 0;
           } else {
-            // spiwrite (correct, wrong, next spell, time up = 0)
+            // wrong spell casted but time did not run out
+            // no need to generate new spell, but report that a wrong spell was casted
+
+            fpgaSendRound(required_spell, FPGA_FLAG_WRONG);
           }
             
             
@@ -158,8 +170,10 @@ int main(void) {
         }
 
         if (time_up){
+            time_up = 0;
             required_spell = nextSpellGenerator(); // generating next move
-            // spiwrite (correct, wrong, next spell, time up)
+            fpgaSendRound(required_spell, FPGA_FLAG_TIMEOUT);
+            TIM2->CNT = 0; // restart timer
         }
     }
 }

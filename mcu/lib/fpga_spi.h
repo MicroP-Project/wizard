@@ -50,13 +50,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 // spell directions (3 bits) -- same numbering as user_input in main.c
-#define FPGA_DIR_NONE  0
-#define FPGA_DIR_POS_X 1
-#define FPGA_DIR_NEG_X 2
-#define FPGA_DIR_POS_Y 3
-#define FPGA_DIR_NEG_Y 4
-#define FPGA_DIR_POS_Z 5
-#define FPGA_DIR_NEG_Z 6
+#define FPGA_DIR_NONE  0 // means do not update the display
+// #define FPGA_DIR_POS_X 5
+// #define FPGA_DIR_NEG_X 6
+#define FPGA_DIR_POS_Y 1
+#define FPGA_DIR_NEG_Y 2
+#define FPGA_DIR_POS_Z 3
+#define FPGA_DIR_NEG_Z 4
 
 // result flags (one bit each)
 #define FPGA_FLAG_NONE    0b000   // no result yet (first round)
@@ -77,7 +77,7 @@ void    initFPGA(void);
 void    fpgaSendPacket(uint8_t packet);
 
 /* Builds the packet from the next spell and a result flag, then sends it.
- *    -- next_spell: FPGA_DIR_POS_X ... FPGA_DIR_NEG_Z
+ *    -- next_spell: FPGA_DIR_POS_X, FPGA_DIR_POS_Y
  *    -- result:     FPGA_FLAG_NONE, FPGA_FLAG_RIGHT, FPGA_FLAG_WRONG or FPGA_FLAG_TIMEOUT
  * Example: fpgaSendRound(FPGA_DIR_NEG_Y, FPGA_FLAG_RIGHT); */
 void    fpgaSendRound(uint8_t next_spell, uint8_t result);

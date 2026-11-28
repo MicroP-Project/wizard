@@ -12,6 +12,7 @@
 #include "ACCEL_SPI.h"            // initAccel(), accelReadMg(), accel_t
 #include "STM32L432KC_FLASH.h"
 #include "STM32L432KC_TRNG.h"       // initTRNG(), nextSpellGenerator()
+#include "fpga_spi.h"
 
 
 #define BUTTON_PIN PA9
