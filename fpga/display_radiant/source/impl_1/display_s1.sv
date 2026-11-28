@@ -40,7 +40,7 @@ module display_s1 (
     wire [3:0] bit_idx = 4'd15 - cnt[3:0];
 
     always_comb begin
-        if (cnt < 15'd64) begin
+        /*if (cnt < 15'd64) begin
             // Phase 1: Write REG2 across all 4 cascaded FM6124 drivers
             R1  = FM6124_REG2[bit_idx];
             G1  = FM6124_REG2[bit_idx];
@@ -60,7 +60,7 @@ module display_s1 (
             B2  = FM6124_REG1[bit_idx];
             LAT = (cnt >= 15'd117);
             OE  = 1'b1;
-        end else if (cnt < 15'd192) begin
+        end else */ if (cnt < 15'd1) begin
             // Phase 3: Shift 64 '1's into R1 and latch on cycle 191
             R1  = 1'b1;
             G1  = 1'b0;
@@ -68,7 +68,7 @@ module display_s1 (
             R2  = 1'b0;
             G2  = 1'b0;
             B2  = 1'b0;
-            LAT = (cnt == 15'd191);
+            LAT = (cnt == 15'd0);
             OE  = 1'b1;
         end else begin
             // Phase 4: Hold Row 0 continuously lit

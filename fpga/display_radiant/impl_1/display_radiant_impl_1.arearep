@@ -10,13 +10,13 @@ I/O cells:      15
                                  IB         1          100.0
                                 INV         1          100.0
                               IOL_B         1          100.0
-                               LUT4        40          100.0
+                               LUT4        31          100.0
                                  OB        14          100.0
 SUB MODULES
                             clk_div         1
                          display_s1         1
                       sync(WIDTH=1)         1
-                              TOTAL        89
+                              TOTAL        80
 ----------------------------------------------------------------------
 Report for cell display_s1.v1
 Instance Path : u_display_s1
@@ -25,16 +25,8 @@ Instance Path : u_display_s1
                                 FA2         8          100.0
                             FD1P3XZ        15           75.0
                                 INV         1          100.0
-                               LUT4        30           75.0
-                              TOTAL        54
-----------------------------------------------------------------------
-Report for cell clk_div.v1
-Instance Path : u_clk_div
-                                  Cell usage:
-                               cell     count   Res Usage(%)
-                            FD1P3XZ         4           20.0
-                               LUT4         5           12.5
-                              TOTAL         9
+                               LUT4        26           83.9
+                              TOTAL        50
 ----------------------------------------------------------------------
 Report for cell sync(WIDTH=1).v1
 Instance Path : u_sync
@@ -43,3 +35,11 @@ Instance Path : u_sync
                             FD1P3XZ         1            5.0
                               IOL_B         1          100.0
                               TOTAL         2
+----------------------------------------------------------------------
+Report for cell clk_div.v1
+Instance Path : u_clk_div
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ         4           20.0
+                               LUT4         5           16.1
+                              TOTAL         9
