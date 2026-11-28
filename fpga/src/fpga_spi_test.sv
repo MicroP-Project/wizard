@@ -7,10 +7,10 @@
 // Pins: sck <- PB3, sdi <- PB5 (MOSI), sdo -> PB4 (MISO, garbage), cs <- PA8, led -> any LED.
 
 module fpga_spi_test(input  logic sck, // P21
-                     input  logic sdi, // P19
-                     output logic sdo, // P11
-                     input  logic cs,  // P6
-                     output logic led);// P38
+                     input  logic sdi, // P10
+                     output logic sdo, // P12
+                     input  logic cs,  // P20
+                     output logic led_correct, led_timeout, led_wrong); // P19, P11, P6
 
     localparam int          ONE_SECOND  = 48_000_000;  // HSOSC = 48 MHz
 
@@ -18,7 +18,7 @@ module fpga_spi_test(input  logic sck, // P21
     logic [7:0]  packet;
     logic [2:0]  cs_sync;
     logic        cs_rise;
-    logic [25:0] counter;                              // 2^26 > 48,000,000
+    logic [25:0] counter0, counter1, counter2;                              // 2^26 > 48,000,000
 
     // 48 MHz internal oscillator
     HSOSC #(.CLKHF_DIV(2'b00))
@@ -35,10 +35,27 @@ module fpga_spi_test(input  logic sck, // P21
     // end of a packet; packet was latched on the real cs edge a few clks ago, so it is stable now
     assign cs_rise = cs_sync[1] & ~cs_sync[2];
 
-    // start (or restart) a 1 s countdown whenever a packet with right = 1 arrives
-    always_ff @(posedge clk)
-        if (cs_rise && packet[0]) counter <= ONE_SECOND - 1;
-        else if (counter != 0)                counter <= counter - 1;
+    ////////////////// the code that lights LED for testing //////////////////////
 
-    assign led = (counter != 0);   // active high; use ~(counter != 0) if your LED is active low
+    // start (or restart) a 1 s countdown whenever a packet with right flag arrives
+    always_ff @(posedge clk)
+        if (cs_rise && packet[0]) counter0 <= ONE_SECOND - 1;
+        else if (counter0 != 0)                counter0 <= counter0 - 1;
+
+    assign led_correct = (counter0 != 0);   // active high; use ~(counter != 0) if your LED is active low
+
+    // wrong
+    always_ff @(posedge clk)
+        if (cs_rise && packet[1]) counter1 <= ONE_SECOND - 1;
+        else if (counter1 != 0)                counter1 <= counter1 - 1;
+
+    assign led_wrong = (counter1 != 0);  
+
+    // timeout
+
+    always_ff @(posedge clk)
+        if (cs_rise && packet[2]) counter2 <= ONE_SECOND - 1;
+        else if (counter2 != 0)                counter2 <= counter2 - 1;
+
+    assign led_timeout = (counter2 != 0);   
 endmodule
