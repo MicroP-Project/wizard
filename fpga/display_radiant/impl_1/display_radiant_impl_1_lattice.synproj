@@ -45,8 +45,9 @@
 -sver "../source/impl_1/sync.sv"
 -sver "../source/impl_1/counter.sv"
 -sver "../source/impl_1/row_driver.sv"
--sver "../source/impl_1/matrix_driver.sv"
 -sver "../source/impl_1/fake_SPRAM.sv"
+-sver "../source/impl_1/matrix_driver.sv"
+-sver "../source/impl_1/pwr_rst.sv"
 -path ".."
 -top display_top
 # Output Configuration

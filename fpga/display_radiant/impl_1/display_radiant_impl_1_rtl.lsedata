@@ -2,8 +2,8 @@
 
 <clocks>
     <clockitem name = "int_osc"  type = "net" />
-    <clockitem name = "u_matrix_driver/n2"  type = "net" />
     <clockitem name = "u_matrix_driver/u_row_driver/n2"  type = "net" />
+    <clockitem name = "u_matrix_driver/n2"  type = "net" />
 </clocks>
 
 <!--

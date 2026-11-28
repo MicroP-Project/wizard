@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Sat Nov 28 02:23:05 2026
+Mapped on: Sat Nov 28 11:30:05 2026
 
 Design Information
 ------------------
@@ -22,12 +22,12 @@ Command line:   map -pdc C:/Users/jesli/Documents/GitHub/wizard/fpga/display_rad
 Design Summary
 --------------
 
-   Number of slice registers:  34 out of  5280 (1%)
+   Number of slice registers:  44 out of  5280 (1%)
    Number of I/O registers:      1 out of   117 (1%)
-   Number of LUT4s:            90 out of  5280 (2%)
-      Number of logic LUT4s:              53
+   Number of LUT4s:           130 out of  5280 (2%)
+      Number of logic LUT4s:              83
       Number of inserted feedthru LUT4s:   1
-      Number of ripple logic:             18 (36 LUT4s)
+      Number of ripple logic:             23 (46 LUT4s)
    Number of IO sites used:   15 out of 39 (38%)
       Number of IO sites used for general PIO: 15
       Number of IO sites used for I3C: 0 out of 2 (0%)
@@ -50,16 +50,16 @@ Design Summary
    Number of EBRs:             0 out of 30 (0%)
    Number of PLLs:             0 out of 1 (0%)
    Number of Clocks:  2
-      Net int_osc: 15 loads, 15 rising, 0 falling (Driver: Pin u_hfosc/CLKHF)
       Net clk_shift: 10 loads, 0 rising, 10 falling (Driver: Pin
      u_clk_div.clk_out/Q)
+      Net int_osc: 32 loads, 32 rising, 0 falling (Driver: Pin u_hfosc/CLKHF)
    Number of Clock Enables:  3
       Net VCC_net: 1 loads, 0 SLICEs
-      Net n471: 9 loads, 9 SLICEs
-      Net n455: 5 loads, 5 SLICEs
+      Net n441: 5 loads, 5 SLICEs
+      Net n461: 26 loads, 26 SLICEs
    Number of LSRs:  4
-      Net n451: 9 loads, 9 SLICEs
-      Net n31: 6 loads, 6 SLICEs
+      Net n51: 6 loads, 6 SLICEs
+      Net u_matrix_driver.u_row_driver.u_col_cnt.n173: 5 loads, 5 SLICEs
 
                                     Page 1
 
@@ -69,19 +69,19 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
-      Net u_matrix_driver.u_row_driver.u_col_cnt.n224: 5 loads, 5 SLICEs
-      Net u_clk_div.n221: 3 loads, 3 SLICEs
+      Net n436: 26 loads, 26 SLICEs
+      Net u_clk_div.n167: 3 loads, 3 SLICEs
    Top 10 highest fanout non-clock nets:
-      Net n31: 10 loads
-      Net n451: 9 loads
-      Net n471: 9 loads
+      Net n1317: 29 loads
+      Net n422: 29 loads
+      Net n436: 26 loads
+      Net n461: 26 loads
       Net row_addr_c_2: 9 loads
       Net row_addr_c_3: 9 loads
       Net col_addr[3]: 8 loads
+      Net n51: 8 loads
       Net row_addr_c: 8 loads
       Net row_addr_c_0: 8 loads
-      Net row_addr_c_1: 8 loads
-      Net col_addr[0]: 7 loads
 
 
 
@@ -103,9 +103,9 @@ IO (PIO) Attributes
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
 |                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| E                   | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
 | CLK                 | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| E                   | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | LAT                 | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
@@ -177,8 +177,8 @@ Run Time and Memory Usage
 
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
-   Peak Memory Usage: 66 MB
-Checksum -- map: cac2a996df4b10baeabb64a12e7d70e2310814d
+   Peak Memory Usage: 67 MB
+Checksum -- map: b92926cb9465e56875b44a56ea417b6a35b79a2
 
 
 

@@ -41,14 +41,15 @@ module display_top (
     );
 
     // 3. Power-On Reset + Button Reset (~1.36 ms hold @ 48 MHz)
-    always_ff @(posedge int_osc) begin
-        if (!nrst_sync)
-            por_cnt <= 16'd0;
-        else if (por_cnt != 16'hFFFF)
-            por_cnt <= por_cnt + 16'd1;
-    end
-
-    assign nrst_int = (por_cnt == 16'hFFFF);
+    pwr_rst #(
+		.WIDTH(26), 
+		.MAX_COUNT(65536)
+	) u__pwr_rst (
+		.clk(int_osc), 
+		.nrst_in(nrst_sync),
+		.nrst_out(nrst_int)
+	);
+	
 
     // 4. Divide 48 MHz down to 3 MHz shift clock
     clk_div #(
