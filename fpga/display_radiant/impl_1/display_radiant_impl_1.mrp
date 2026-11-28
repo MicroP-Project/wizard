@@ -8,7 +8,7 @@ Package: SG48
 Performance Grade:  High-Performance_1.2V
 
 Mapper:    version Radiant Software (64-bit) 2026.1.0.37.0
-Mapped on: Sat Nov 28 01:34:56 2026
+Mapped on: Sat Nov 28 02:23:05 2026
 
 Design Information
 ------------------
@@ -22,12 +22,12 @@ Command line:   map -pdc C:/Users/jesli/Documents/GitHub/wizard/fpga/display_rad
 Design Summary
 --------------
 
-   Number of slice registers:  20 out of  5280 (<1%)
+   Number of slice registers:  34 out of  5280 (1%)
    Number of I/O registers:      1 out of   117 (1%)
-   Number of LUT4s:            50 out of  5280 (1%)
-      Number of logic LUT4s:              33
+   Number of LUT4s:            90 out of  5280 (2%)
+      Number of logic LUT4s:              53
       Number of inserted feedthru LUT4s:   1
-      Number of ripple logic:              8 (16 LUT4s)
+      Number of ripple logic:             18 (36 LUT4s)
    Number of IO sites used:   15 out of 39 (38%)
       Number of IO sites used for general PIO: 15
       Number of IO sites used for I3C: 0 out of 2 (0%)
@@ -50,16 +50,16 @@ Design Summary
    Number of EBRs:             0 out of 30 (0%)
    Number of PLLs:             0 out of 1 (0%)
    Number of Clocks:  2
-      Net CLK_c: 15 loads, 0 rising, 15 falling (Driver: Pin
+      Net int_osc: 15 loads, 15 rising, 0 falling (Driver: Pin u_hfosc/CLKHF)
+      Net clk_shift: 10 loads, 0 rising, 10 falling (Driver: Pin
      u_clk_div.clk_out/Q)
-      Net int_osc: 6 loads, 6 rising, 0 falling (Driver: Pin u_hfosc/CLKHF)
-   Number of Clock Enables:  1
+   Number of Clock Enables:  3
       Net VCC_net: 1 loads, 0 SLICEs
-   Number of LSRs:  2
-      Net cnt_0__N_47: 16 loads, 16 SLICEs
-      Net u_clk_div.n30: 3 loads, 3 SLICEs
-   Top 10 highest fanout non-clock nets:
-      Net cnt_0__N_47: 16 loads
+      Net n471: 9 loads, 9 SLICEs
+      Net n455: 5 loads, 5 SLICEs
+   Number of LSRs:  4
+      Net n451: 9 loads, 9 SLICEs
+      Net n31: 6 loads, 6 SLICEs
 
                                     Page 1
 
@@ -69,15 +69,19 @@ Design Summary
 
 Design Summary (cont)
 ---------------------
-      Net u_display_s1.n29: 15 loads
-      Net u_clk_div.count[0]: 5 loads
-      Net u_clk_div.count[1]: 4 loads
-      Net VCC_net: 4 loads
-      Net u_display_s1.cnt[0]: 3 loads
-      Net u_display_s1.cnt[10]: 3 loads
-      Net u_display_s1.cnt[12]: 3 loads
-      Net u_display_s1.cnt[13]: 3 loads
-      Net u_display_s1.cnt[1]: 3 loads
+      Net u_matrix_driver.u_row_driver.u_col_cnt.n224: 5 loads, 5 SLICEs
+      Net u_clk_div.n221: 3 loads, 3 SLICEs
+   Top 10 highest fanout non-clock nets:
+      Net n31: 10 loads
+      Net n451: 9 loads
+      Net n471: 9 loads
+      Net row_addr_c_2: 9 loads
+      Net row_addr_c_3: 9 loads
+      Net col_addr[3]: 8 loads
+      Net row_addr_c: 8 loads
+      Net row_addr_c_0: 8 loads
+      Net row_addr_c_1: 8 loads
+      Net col_addr[0]: 7 loads
 
 
 
@@ -99,13 +103,13 @@ IO (PIO) Attributes
 | IO Name             | Direction | Levelmode |  IO   |  IO   | Special   |
 |                     |           |  IO_TYPE  |  REG  |  DDR  | IO Buffer |
 +---------------------+-----------+-----------+-------+-------+-----------+
+| E                   | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
 | CLK                 | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | LAT                 | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | OE                  | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| E                   | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 | D                   | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
@@ -123,10 +127,6 @@ IO (PIO) Attributes
 +---------------------+-----------+-----------+-------+-------+-----------+
 | B1                  | OUTPUT    |           |       |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
-| G1                  | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
-| R1                  | OUTPUT    |           |       |       |           |
-+---------------------+-----------+-----------+-------+-------+-----------+
 
                                     Page 2
 
@@ -136,13 +136,17 @@ IO (PIO) Attributes
 
 IO (PIO) Attributes (cont)
 --------------------------
+| G1                  | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
+| R1                  | OUTPUT    |           |       |       |           |
++---------------------+-----------+-----------+-------+-------+-----------+
 | nrst_in             | INPUT     |           | I     |       |           |
 +---------------------+-----------+-----------+-------+-------+-----------+
 
 Removed logic
 -------------
 
-Block u_display_s1/i4_1_lut was optimized away.
+Block u_matrix_driver/u_row_driver/i4_1_lut was optimized away.
 
 OSC Summary
 -----------
@@ -157,10 +161,10 @@ OSC 1:                                 Pin/Node Value
 ASIC Components
 ---------------
 
-Instance Name: u_sync/n1[0]
-         Type: IOLOGIC
 Instance Name: u_hfosc
          Type: HFOSC
+Instance Name: u_sync/n1[0]
+         Type: IOLOGIC
 
 Constraint Summary
 ------------------
@@ -173,12 +177,8 @@ Run Time and Memory Usage
 
    Total CPU Time: 0 secs
    Total REAL Time: 0 secs
-   Peak Memory Usage: 65 MB
-Checksum -- map: c95f1515474efc489de17255dc4528b0c3d11bfb
-
-
-
-
+   Peak Memory Usage: 66 MB
+Checksum -- map: cac2a996df4b10baeabb64a12e7d70e2310814d
 
 
 

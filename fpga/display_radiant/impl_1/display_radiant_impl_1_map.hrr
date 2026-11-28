@@ -4,39 +4,83 @@ Report for cell display_top
                      Cell usage:
                                   cell	      count    Res Usage(%)
                                  IOLGC	       1.00        100.0
-                                  LUT4	         50        100.0
-                               LUTGATE	         34        100.0
-                                LUTCCU	         16        100.0
+                                  LUT4	         90        100.0
+                               LUTGATE	         54        100.0
+                                LUTCCU	         36        100.0
                                  IOREG	          1        100.0
                                  IOBUF	         15        100.0
-                                PFUREG	         20        100.0
+                                PFUREG	         34        100.0
 SUB MODULES
                                   cell	      count    LUT4 Usage(%)
-                               clk_div	          1        10.0
-                            display_s1	          1        84.0
-                         sync(WIDTH=1)	          1         0.0
+                               clk_div	          1         5.6
+                            fake_SPRAM	          1        26.7
+                         matrix_driver	          1        27.8
+                         sync(WIDTH=1)	          1         1.1
 ---------------------------------------------------
-Report for cell display_s1
-   Instance path: display_top/u_display_s1
+Report for cell fake_SPRAM
+   Instance path: display_top/u_fake_SPRAM
                      Cell usage:
                                   cell	      count    Res Usage(%)
-                                  LUT4	         42        84.0
-                               LUTGATE	         26        76.5
-                                LUTCCU	         16        100.0
-                                PFUREG	         15        75.0
+                                  LUT4	         24        26.7
+                               LUTGATE	         16        29.6
+                                LUTCCU	          8        22.2
+---------------------------------------------------
+Report for cell matrix_driver
+   Instance path: display_top/u_matrix_driver
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         25        27.8
+                               LUTGATE	         15        27.8
+                                LUTCCU	         10        27.8
+                                PFUREG	         13        38.2
+SUB MODULES
+                                  cell	      count    LUT4 Usage(%)
+         counter(WIDTH=5,MAX_COUNT=32)	          1         7.8
+                            row_driver	          1        20.0
+---------------------------------------------------
+Report for cell row_driver
+   Instance path: display_top/u_matrix_driver/u_row_driver
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         18        20.0
+                               LUTGATE	          8        14.8
+                                LUTCCU	         10        27.8
+                                PFUREG	          8        23.5
+SUB MODULES
+                                  cell	      count    LUT4 Usage(%)
+        counter(WIDTH=8,MAX_COUNT=129)	          1        12.2
+---------------------------------------------------
+Report for cell counter(WIDTH=8,MAX_COUNT=129)
+   Instance path: display_top/u_matrix_driver/u_row_driver/u_col_cnt
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	         11        12.2
+                               LUTGATE	          1         1.9
+                                LUTCCU	         10        27.8
+                                PFUREG	          8        23.5
+---------------------------------------------------
+Report for cell counter(WIDTH=5,MAX_COUNT=32)
+   Instance path: display_top/u_matrix_driver/u_row_cnt
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	          7         7.8
+                               LUTGATE	          7        13.0
+                                PFUREG	          5        14.7
+---------------------------------------------------
+Report for cell clk_div
+   Instance path: display_top/u_clk_div
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  LUT4	          5         5.6
+                               LUTGATE	          5         9.3
+                                PFUREG	          4        11.8
 ---------------------------------------------------
 Report for cell sync(WIDTH=1)
    Instance path: display_top/u_sync
                      Cell usage:
                                   cell	      count    Res Usage(%)
                                  IOLGC	       1.00        100.0
+                                  LUT4	          1         1.1
+                               LUTGATE	          1         1.9
                                  IOREG	          1        100.0
-                                PFUREG	          1         5.0
----------------------------------------------------
-Report for cell clk_div
-   Instance path: display_top/u_clk_div
-                     Cell usage:
-                                  cell	      count    Res Usage(%)
-                                  LUT4	          5        10.0
-                               LUTGATE	          5        14.7
-                                PFUREG	          4        20.0
+                                PFUREG	          1         2.9

@@ -1,45 +1,91 @@
 ----------------------------------------------------------------------
 Report for cell display_top.TECH
-Register bits:  20 of 5280 (0.379%)
+Register bits:  34 of 5280 (0.644%)
 I/O cells:      15
                                   Cell usage:
                                cell     count   Res Usage(%)
-                               CCU2         8          100.0
-                            FD1P3XZ        20          100.0
+                               CCU2        18          100.0
+                            FD1P3XZ        34          100.0
                          HSOSC_CORE         1          100.0
                                  IB         1          100.0
                                 INV         1          100.0
                               IOL_B         1          100.0
-                               LUT4        31          100.0
+                               LUT4        51          100.0
                                  OB        14          100.0
 SUB MODULES
                             clk_div         1
-                         display_s1         1
+      counter(WIDTH=5,MAX_COUNT=32)         1
+     counter(WIDTH=8,MAX_COUNT=129)         1
+                         fake_SPRAM         1
+                      matrix_driver         1
+                         row_driver         1
                       sync(WIDTH=1)         1
-                              TOTAL        80
+                              TOTAL       128
 ----------------------------------------------------------------------
-Report for cell display_s1.v1
-Instance Path : u_display_s1
+Report for cell fake_SPRAM.v1
+Instance Path : u_fake_SPRAM
                                   Cell usage:
                                cell     count   Res Usage(%)
-                                FA2         8          100.0
-                            FD1P3XZ        15           75.0
+                                FA2         4           22.2
+                               LUT4        17           33.3
+                              TOTAL        21
+----------------------------------------------------------------------
+Report for cell matrix_driver.v1
+Instance Path : u_matrix_driver
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2         5           27.8
+                            FD1P3XZ        13           38.2
                                 INV         1          100.0
-                               LUT4        26           83.9
-                              TOTAL        50
+                               LUT4        15           29.4
+SUB MODULES
+      counter(WIDTH=5,MAX_COUNT=32)         1
+     counter(WIDTH=8,MAX_COUNT=129)         1
+                         row_driver         1
+                              TOTAL        37
 ----------------------------------------------------------------------
-Report for cell sync(WIDTH=1).v1
-Instance Path : u_sync
+Report for cell row_driver.v1
+Instance Path : u_matrix_driver.u_row_driver
                                   Cell usage:
                                cell     count   Res Usage(%)
-                            FD1P3XZ         1            5.0
-                              IOL_B         1          100.0
-                              TOTAL         2
+                                FA2         5           27.8
+                            FD1P3XZ         8           23.5
+                                INV         1          100.0
+                               LUT4         8           15.7
+SUB MODULES
+     counter(WIDTH=8,MAX_COUNT=129)         1
+                              TOTAL        23
+----------------------------------------------------------------------
+Report for cell counter(WIDTH=8,MAX_COUNT=129).v1
+Instance Path : u_matrix_driver.u_row_driver.u_col_cnt
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2         5           27.8
+                            FD1P3XZ         8           23.5
+                               LUT4         1            2.0
+                              TOTAL        14
+----------------------------------------------------------------------
+Report for cell counter(WIDTH=5,MAX_COUNT=32).v1
+Instance Path : u_matrix_driver.u_row_cnt
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ         5           14.7
+                               LUT4         7           13.7
+                              TOTAL        12
 ----------------------------------------------------------------------
 Report for cell clk_div.v1
 Instance Path : u_clk_div
                                   Cell usage:
                                cell     count   Res Usage(%)
-                            FD1P3XZ         4           20.0
-                               LUT4         5           16.1
+                            FD1P3XZ         4           11.8
+                               LUT4         5            9.8
                               TOTAL         9
+----------------------------------------------------------------------
+Report for cell sync(WIDTH=1).v1
+Instance Path : u_sync
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            FD1P3XZ         1            2.9
+                              IOL_B         1          100.0
+                               LUT4         1            2.0
+                              TOTAL         3
